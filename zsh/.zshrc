@@ -1,19 +1,9 @@
-# autocomplete gives me error when in root
-if [[ $UID -eq 0 ]]
-then
-    autoload -U compinit edit-command-line zmv run-help
-    compinit
-else
-    # Remove any calls to compinit
-    source /home/mimosinnet/Dades/Scripts/Zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-    autoload -U edit-command-line zmv run-help
-fi
-
 # Variables {{{
 HISTFILE=~/.zshhistory
 HISTSIZE=3000
 SAVEHIST=3000
 Actius=/home/mimosinnet/Dades/Scripts/Actius
+Plugins=/home/mimosinnet/.zsh/plugins
 
 # The meaning of these options can be found in man page of `zshoptions`.
 setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
@@ -21,6 +11,22 @@ setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
 setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 setopt EXTENDED_HISTORY  # record command start time
+# }}}
+
+# Plugins {{{
+source $Plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $Plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+# autocomplete gives me error when in root
+if [[ $UID -eq 0 ]]
+then
+    autoload -U compinit edit-command-line zmv run-help
+    compinit
+else
+    # Remove any calls to compinit
+    source $Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh 
+    autoload -U edit-command-line zmv run-help
+fi
 # }}}
 
 # opcions {{{
@@ -263,17 +269,17 @@ zstyle ':completion:*' menu select
 # 
 # # Afegit de: https://www.nesono.com/node/309
 # # format autocompletion style
-# zstyle ':completion:*:descriptions' format "%{$fg_bold[green]%}%d%{$reset_color%}"
-# zstyle ':completion:*:corrections' format "%{$fg_bold[yellow]%}%d%{$reset_color%}"
-# zstyle ':completion:*:messages' format "%{$fg_bold[red]%}%d%{$reset_color%}"
-# zstyle ':completion:*:warnings' format "%{$fg_bold[red]%}%d%{$reset_color%}"
-# # zstyle show completion menu if 2 or more items to select
-# zstyle ':completion:*'                        menu select=2
+zstyle ':completion:*:descriptions' format "%{$fg_bold[green]%}%d%{$reset_color%}"
+zstyle ':completion:*:corrections' format "%{$fg_bold[yellow]%}%d%{$reset_color%}"
+zstyle ':completion:*:messages' format "%{$fg_bold[red]%}%d%{$reset_color%}"
+zstyle ':completion:*:warnings' format "%{$fg_bold[red]%}%d%{$reset_color%}"
+# zstyle show completion menu if 2 or more items to select
+zstyle ':completion:*'                        menu select=2
 # 
 # # zstyle kill menu
-# zstyle ':completion:*:*:kill:*'               menu yes select
-# zstyle ':completion:*:kill:*'                 force-list always
-# zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=31"
+zstyle ':completion:*:*:kill:*'               menu yes select
+zstyle ':completion:*:kill:*'                 force-list always
+zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=31"
 # https://github.com/marlonrichert/zsh-autocomplete?tab=readme-ov-file
 # This will make Autocomplete behave as if you pressed CtrlR at the start of each new command line
 # zstyle ':autocomplete:*' default-context history-incremental-search-backward
