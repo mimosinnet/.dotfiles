@@ -21,7 +21,8 @@ source $Plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 if [[ $UID -eq 0 ]]
 then
     autoload -U compinit edit-command-line zmv run-help
-    compinit
+    # Skip security checks for root, as we are using the same configuration than the user
+    compinit -u
 else
     # Remove any calls to compinit
     source $Plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh 
