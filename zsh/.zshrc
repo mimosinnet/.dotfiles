@@ -3,6 +3,7 @@ HISTFILE=~/.zshhistory
 HISTSIZE=3000
 SAVEHIST=3000
 Actius=/home/mimosinnet/Dades/Scripts/Actius
+Zsh=/home/mimosinnet/.zsh
 
 # The meaning of these options can be found in man page of `zshoptions`.
 setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
@@ -14,11 +15,10 @@ setopt EXTENDED_HISTORY  # record command start time
 
 # plugins {{{
 
-# Antigen {{{
+# Antidote {{{
 # https://getantidote.github.io/install
-Plugins=/home/mimosinnet/.zsh
-zsh_plugins=${Plugins}/zsh_plugins
-fpath=(${Plugins}/antidote/functions $fpath)
+zsh_plugins=${Zsh}/zsh_plugins
+fpath=(${Zsh}/antidote/functions $fpath)
 autoload -Uz antidote
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
@@ -312,7 +312,6 @@ alias -r Funct='print -l ${(ok)functions[(I)[^_]*]}'
 
 # }}}
 
-
 # Funcions {{{
 
 # Activar funcions:
@@ -341,3 +340,4 @@ bindkey '^[[C' forward-char 		# right
 bindkey '^[[2~' overwrite-mode		# insert
 # }}}
 
+source ${Zsh}/aliases.zsh
