@@ -1,0 +1,535 @@
+# Info {{{
+
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+
+# }}}
+
+# Automatically starting applications on startup {{{
+exec pulseaudio -D 
+exec parcellite
+exec blueman-applet
+# exec urxvtd -q -f -o
+# exec alacritty -e tmux
+exec xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output HDMI-A-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+exec wpa_gui -t
+exec sleep 20s && google-chrome-stable --new-window --profile-directory="Default"
+exec sleep 30s && /usr/local/bin/Telegram/Telegram
+exec sleep 40s && pasystray
+exec sleep 70s && thunderbird-bin
+exec sleep 80s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar"
+exec sleep 10m && vivaldi
+exec sleep 15m && /usr/bin/signal-desktop
+# exec sleep 6m && discord
+# exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
+# exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
+# exec sleep 7m && google-chrome-stable --new-window "https://www.google.com/finance/"
+
+# exec sleep 7m && flatpak run md.obsidian.Obsidian
+# Velles:
+# exec sleep  4m && pavucontrol --class=pavucontrol
+# exec su - nisomim    -c '/home/nisomim/bin/Telegram/Telegram'
+# exec su - nosimim -c /usr/local/bin/Telegram_Nisomim/Telegram
+# }}}
+
+# set variables {{{
+set $mod Mod4
+set  $1 KP_End
+set  $2 KP_Down
+set  $3 KP_Next
+set  $4 KP_Left
+set  $5 KP_Begin
+set  $6 KP_Right
+set  $7 KP_Home 
+set  $8 KP_Up
+set  $9 KP_Prior
+set $10 KP_Insert
+set  $W1  "1: Files"
+set  $W2  "2: Mail"
+set  $W3  "3: Other"
+set  $W4  "4: Browsers"
+set  $W5  "5: System"
+set  $W6  "6: Leisure"
+set  $W7  "7: Chrome"
+set  $W8  "8: People"
+set  $W9  "9: Office"
+set $W10 "10: Utils"
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+# }}}
+
+# 4.2. Fonts {{{
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# font pango:monospace 8
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+# }}}
+
+# 4.5. floating {{{
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# }}}
+
+# 5. Status bar {{{1
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	position top
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	colors {
+		# yellow
+		separator  #FFF000
+		# green
+		statusline #00FF00
+	}
+}
+
+# 1}}}
+
+# 6. List of commands {{{1
+
+# Manipulating laYout {{{ 
+
+bindsym $mod+y 		layout stacking
+bindsym $mod+Shift+y 	layout tabbed
+bindsym $mod+Control+y 	layout toggle split
+
+# maximaze focused container (full screen)                                                                                                                                                    
+bindsym $mod+m fullscreen                                                                                                                                                                     
+bindsym $mod+Control+m fullscreen toggle 
+
+# "Split" the current focussed object horizontally or vertically
+bindsym $mod+s split h
+bindsym $mod+shift+s split v
+
+# }}}
+
+# 6.4. Focusing/Moving containers {{{
+
+# Move your focus around
+bindsym $mod+$left focus left                                                                                                                                                                 
+bindsym $mod+$down focus down                                                                                                                                                                 
+bindsym $mod+$up focus up                                                                                                                                                                     
+bindsym $mod+$right focus right                                                                                                                                                               
+# bindsym $mod+ntilde focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+# bindsym $mod+Shift+j move left
+# bindsym $mod+Shift+k move down
+# bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+ntilde move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# }}}
+
+# 6.7. Moving containers/workspaces to RandR outputs {{{
+bindsym $mod+v move container to output right
+bindsym $mod+Shift+v move container to output left
+bindsym $mod+Ctrl+v move workspace to output right
+bindsym $mod+Shift+Ctrl+v move workspace to output left
+# }}}
+
+# 6.14. Reloading/Restarting/Exiting {{{
+
+# reload the configuration file
+bindsym $mod+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+c restart
+# exit i3 (logs you out of your X session) and do not give focus to the window
+# no_focus [class="Quit.raku"]
+bindsym $mod+Shift+q exec Quit
+# bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'  'i3-msg exit'"
+
+# }}}
+
+# 1}}}
+
+# Workspaces {{{1
+
+# switch to workspace {{{
+bindsym  $1 workspace  $W1
+bindsym  $2 workspace  $W2
+bindsym  $3 workspace  $W3
+bindsym  $4 workspace  $W4
+bindsym  $5 workspace  $W5
+bindsym  $6 workspace  $W6
+bindsym  $7 workspace  $W7
+bindsym  $8 workspace  $W8
+bindsym  $9 workspace  $W9
+bindsym $10 workspace $W10
+
+bindsym $mod+button4 workspace 1
+bindsym $mod+button5 workspace 2
+
+# }}}
+
+# Moving windows to workspaces {{{
+bindsym Control+$1  move container to workspace  $W1
+bindsym Control+$2  move container to workspace  $W2
+bindsym Control+$3  move container to workspace  $W3
+bindsym Control+$4  move container to workspace  $W4
+bindsym Control+$5  move container to workspace  $W5
+bindsym Control+$6  move container to workspace  $W6
+bindsym Control+$7  move container to workspace  $W7
+bindsym Control+$8  move container to workspace  $W8
+bindsym Control+$9  move container to workspace  $W9
+bindsym Control+$10 move container to workspace $W10
+# }}}
+
+# Moving windows to workspaces and move to workspace {{{
+bindsym Control+$mod+$1  move container to workspace  $W1; workspace  $W1
+bindsym Control+$mod+$2  move container to workspace  $W2; workspace  $W2
+bindsym Control+$mod+$3  move container to workspace  $W3; workspace  $W3
+bindsym Control+$mod+$4  move container to workspace  $W4; workspace  $W4
+bindsym Control+$mod+$5  move container to workspace  $W5; workspace  $W5
+bindsym Control+$mod+$6  move container to workspace  $W6; workspace  $W6
+bindsym Control+$mod+$7  move container to workspace  $W7; workspace  $W7
+bindsym Control+$mod+$8  move container to workspace  $W8; workspace  $W8
+bindsym Control+$mod+$9  move container to workspace  $W9; workspace  $W9
+bindsym Control+$mod+$10 move container to workspace $W10; workspace $W10
+# }}}
+
+# default applications on workspace {{{
+bindsym Shift+$1  workspace  $W1; mode "Files"
+bindsym Shift+$2  workspace  $W2; mode "Mail"
+bindsym Shift+$3  workspace  $W3; exec gvim
+bindsym Shift+$4  workspace  $W4; mode "Browsers"
+bindsym Shift+$5  workspace  $W5; mode "System"
+bindsym Shift+$6  workspace  $W6; mode "Oci"
+bindsym Shift+$7  workspace  $W7; exec google-chrome-stable
+bindsym Shift+$8  workspace  $W8; mode "People"
+bindsym Shift+$9  workspace  $W9; mode "Office"
+bindsym Shift+$10 workspace $W10; mode "Utils"
+# }}}
+
+# 4.11. Arbitrary commands for specific windows {{{
+for_window [class="Xmessage"] floating enable
+for_window [class="Quit"] floating enable
+for_window [class="qpaeq"] floating enable
+for_window [class="pavucontrol"] floating enable
+for_window [class="pavumeter"] floating enable
+# }}}
+
+# 4.13. Automatically putting clients on specific workspaces {{{
+assign [class="thunderbird"] $W2
+for_window [title="^Calendari"] move to workspace $W2
+for_window [class="Signal"] move to workspace $W3
+assign [class="Firefox"] $W4
+# assign [title="^Alacritty$"] $W5
+assign [class="pavucontrol"] $W6
+for_window [title="^Carteras"] move to workspace $W6
+assign [class="google-chrome" window_role="browser"] $W7
+assign [class="^Telegram"] $W8
+# assign [class="Signal"] $W8
+assign [class="libreoffice" title="Sin título"] $W9
+assign [class="obsidian"] $W10
+# }}}
+
+# 4.15. Automatically putting workspaces on specific screens {{{
+
+# Cols
+# 1 2 3
+# -----
+# 7 8 9
+# 4 5 6 
+# 1 2 3
+
+# Col1: output DisplayPort-0
+# Col2: output HDMI-A-1
+# Col3: output DisplayPort-1
+
+workspace $W7 output DisplayPort-0
+workspace $W4 output DisplayPort-0
+workspace $W1 output DisplayPort-0
+
+workspace $W8 output HDMI-A-1
+workspace $W5 output HDMI-A-1
+workspace $W2 output HDMI-A-1
+
+workspace $W9 output DisplayPort-1
+workspace $W6 output DisplayPort-1
+workspace $W3 output DisplayPort-1
+
+workspace $W10 output HDMI-A-1
+# }}}
+
+# 4.23. Automatic back-and-forth {{{
+# workspace_auto_back_and_forth yes
+# }}}
+
+# 1}}}
+
+# Keybindings and Modes (Workspaces) {{{1
+
+# Keyboard bindings {{{
+
+# Menu
+# dmenu (a program launcher)
+bindsym Menu       exec dmenu_run
+# j4-dmenu-desktop
+bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
+
+# Return
+# bindsym $mod+Return 		  exec urxvtc
+# bindsym $mod+Shift+Return exec urxvtd -f
+bindsym $mod+Return 	  exec alacritty 
+bindsym $mod+Shift+Return exec alacritty -e tmux
+
+# a: help
+bindsym $mod+a exec xmessage -nearmouse -file ~/.config/i3/help_files/x_keys_xmessage.txt
+
+# f: focus the parent/child container
+bindsym $mod+f       focus parent
+bindsym $mod+Shift+f focus child
+
+# p: alsamixer, pavucontrol
+bindsym $mod+p         exec urxvtc -e alsamixer
+bindsym $mod+Shift+p   exec pavucontrol
+bindsym $mod+Control+p exec pulseaudio -k
+
+# q: kill focused window
+bindsym $mod+q kill
+
+# Volume
+# bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+# bindsym XF86AudioMute        exec amixer set Master toggle
+
+bindsym $mod+u         exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym $mod+Shift+u   exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym $mod+Control+u exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
+# Print Screen {{{
+bindsym $mod+Print exec Print_Screen root
+bindsym --release $mod+Shift+Print exec Print_Screen area
+bindsym $mod+Mod1+Print exec Print_Screen delay
+bindsym $mod+Control+Print exec Print_Screen window
+# }}}
+
+# }}}
+
+# Mode resize (resize containers/windows) {{{
+# resize window (you can also use the mouse for that)
+mode "resize" {
+
+		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/x_help_Resize.txt
+
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # same bindings, but less movement 
+        bindsym Shift+Left  resize shrink width  1 px or 1 ppt
+        bindsym Shift+Down  resize grow   height 1 px or 1 ppt
+        bindsym Shift+Up    resize shrink height 1 px or 1 ppt
+        bindsym Shift+Right resize grow   width  1 px or 1 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+# }}}
+
+# 0 Utils {{{
+mode "Utils" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/0_help_Utils.txt
+    # bindsym o exec flatpak run md.obsidian.Obsidian
+    bindsym o exec obsidian
+    bindsym z exec zotero
+    bindsym Z exec zotero -P
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+# }}}
+
+# 1 Files {{{
+mode "Files" {
+		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/1_help_Files.txt
+		bindsym m exec urxvtc -e /usr/local/bin/Munta.sh usb
+		bindsym p exec pcmanfm
+    bindsym r exec urxvtc -e ranger
+    bindsym s exec spacefm
+		bindsym v exec urxvtc -e vifm ~/ ~/
+    bindsym x exec rox
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+# }}}
+
+# 2 Mail {{{
+mode "Mail" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/2_help_Mail.txt
+	bindsym c exec urxvtc -j -ss -e perl6 /home/mimosinnet/.config/Repos/bin/Correu.raku
+	bindsym m exec xmessage -nearmouse -file ~/.config/i3/help_files/2_MuttLineEditorKeys.txt
+	bindsym n exec xmessage -nearmouse -file ~/.config/i3/help_files/2_MuttPatternModifier.txt
+	bindsym o exec urxvtc -j -ss -e offlineimap 
+  bindsym s exec skypeforlinux
+  bindsym t exec thunderbird-bin
+	bindsym u exec gvim ~/Dades/Documents/Personal/Directori/UAB.txt
+  bindsym z exec zoom
+	bindsym Shift+m exec xmessage -nearmouse -file ~/.config/i3/help_files/MuttPatternModifier.txt
+  bindsym Shift+t exec teams
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+# }}}
+
+# 4 Browsers {{{
+mode "Browsers" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/4_help_Browsers.txt
+	bindsym d exec dillo
+	bindsym e exec urxvtc -e elinks http://www.google.es 
+	bindsym f exec firefox-bin
+  bindsym v exec vivaldi --proxy-server="localhost:8118"
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# }}}
+
+# 5 System {{{
+mode "System" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/5_help_System.txt
+	bindsym Shift+e exec setxkbmap -model pc104 -layout es 
+	bindsym Shift+c exec urxvtd -f 
+	bindsym c exec urxvtc 
+	bindsym e exec urxvtc -geometry 128x42 -e bash -c "su -c elogv" 
+	bindsym g exec glade
+	bindsym l exec urxvtc -e vim ~/0Enllaços/Linux/linux.txt 
+	bindsym m exec xmodmap -e "pointer = 1 2 3 4 5"
+	bindsym p exec alacritty -e /home/mimosinnet/.zsh/Scripts/Presentacions.zsh
+	bindsym u exec unetbootin 
+	bindsym x exec xterm 
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+# }}}
+
+# 6 Oci {{{
+mode "Oci" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/6_help_Oci.txt
+	bindsym d exec darktable
+	bindsym g exec gimp
+	bindsym i exec inkscape
+	bindsym p exec pavucontrol --class=pavucontrol
+	# bindsym s exec shotcut
+	bindsym s exec flatpak run org.shotcut.Shotcut
+  bindsym t exec subtitleeditor
+  bindsym u exec audacity
+	bindsym v exec vlc
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+# }}}
+
+# 8 People {{{
+mode "People" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/8_help_People.txt
+	bindsym i exec urxvtc -e irssi
+	bindsym r exec urxvtc -e rtorrent
+	bindsym t exec /usr/local/bin/Telegram/Telegram
+  # bindsym shift+t exec su - nisomim -c '/home/nisomim/bin/Telegram/Telegram'
+  bindsym s exec /usr/bin/signal-desktop
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+# }}}
+
+# 9 Office {{{
+mode "Office" {
+		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/9_help_Office.txt
+		bindsym b exec lobase  
+		bindsym c exec localc  
+		bindsym d exec lodraw  
+		bindsym f exec lofromtemplate  
+    bindsym g exec gummi
+		bindsym i exec loimpress  
+		bindsym m exec lomath  
+    bindsym p exec mupdf
+    bindsym q exec qpdfview
+    bindsym t exec texmaker
+		bindsym w exec lowriter
+		bindsym W exec loweb  
+		bindsym x exec xmind
+		bindsym z exec zathura
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+# }}}
+
+# 1}}}
+
+# Start Applications {{{
+# exec ~/.config/i3/scripts/Start_Apps.sh
+
+# }}}
+
+# vim:filetype=i3

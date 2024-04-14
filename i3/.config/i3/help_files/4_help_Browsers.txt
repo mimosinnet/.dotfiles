@@ -1,0 +1,9 @@
+Key
+a help
+d Dillo
+e Elinks 
+f Firefox
+o Opera
+s Surf
+t Tor
+v Vivaldi + privoxy

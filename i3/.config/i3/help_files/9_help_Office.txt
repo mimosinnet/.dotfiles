@@ -1,0 +1,17 @@
+keys
+a help
+b lobase  
+c localc  
+d lodraw  
+f lofromtemplate  
+g gummi
+i loimpress  
+l loweb  
+m lomath  
+p mupdf
+q qpdfview
+t texmaker
+w lowriter 
+W loweb  
+x xmind
+z zathura

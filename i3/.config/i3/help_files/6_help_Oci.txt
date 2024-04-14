@@ -1,0 +1,9 @@
+a help
+d darktable (images)
+g gimp
+i inkscape
+p pavucontrol
+s shotcut
+t subTitle editor
+u audacity
+v vlc

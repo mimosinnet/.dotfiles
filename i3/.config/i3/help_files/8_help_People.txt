@@ -1,0 +1,10 @@
+key
+a help
+i rssi
+r rtorrent
+s Signal
+t Telegram mimosinnet
+
+Also:
+- connman
+- wpa_gui
