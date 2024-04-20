@@ -18,7 +18,7 @@
 
 Clone the git repository:
 
-    $ git clone git@github.com:mimosinnet/dotfiles.git
+    $ git clone git@github.com:mimosinnet/.dotfiles.git
 
 Change to the dotfiles directory and stow the needed packages: 
 
