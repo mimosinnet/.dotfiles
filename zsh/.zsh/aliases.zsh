@@ -24,6 +24,11 @@ alias -r BackupPresentacions="$Actius/Segur.zsh \
   run"
 # }}}
 
+# Alias Baixar Videos {{{
+# alias youtube-dl --write-auto-sub --sub-lang en "youtube.com/watch?v=pGUxQmRNhtk"
+# alias ffmpeg -i video.webm -vf subtitles=subtitle.vtt video_out.webm
+# }}}
+
 # Alias disk space {{{
 alias -r DG='du -hd 1 | grep G'
 alias -r DM='du -hd 1 | grep M'
@@ -57,7 +62,7 @@ alias -r Nous='watch Mails new' Vells='watch Mails cur'
 # }}}
 
 # Alias Mount {{{
-alias -r Mount='mount | grep nfs && mount | grep vg'
+alias -r Mount='mount | grep nfs && mount | grep vga'
 # alias -r MountDocuments='RunRepo   Mount phenom /home/mimosinnet/Dades/Documents'
 alias -r MountMultimedia="$Actius/MountFolder.zsh /mnt/MultiMedia"
 alias -r MountVirtualbox="$Actius/MountFolder.zsh /home/mimosinnet/Dades/VirtualBox"
@@ -67,12 +72,6 @@ alias -r MountZoteroBkp=" $Actius/MountFolder.zsh /home/mimosinnet/Dades/Backup/
 # Alias MoveLast {{{
 alias -r MoveLastBaixades="$Actius/MoveLast.zsh Baixades"
 alias -r MoveLastScreenShots="$Actius/MoveLast.zsh Dades/ScreenShots"
-# }}}
-
-# Alias Presentacions {{{ 
-alias -r PresCopyMedia="$Actius/PresCopyMedia.zsh"
-alias -r PresCrea="$Actius/PresCrea.zsh"
-alias -r PresRsyncServer="$Actius/PresRsyncServer.zsh"
 # }}}
 
 # Alias Perl5 {{{
@@ -110,7 +109,7 @@ alias -r Vimdiff_Psicosocial='RunRepo Vimdiff_Server'
 
 # Alias Servidors {{{
 #alias -r windows="TERM='xterm' ssh mimosinnet@windows11w"
-alias -r mimomedia="$Actius/Entra.zsh mimomedia10"
+alias -r mimomedia="$Actius/Entra.zsh mimomedia"
 alias -r fx="$Actius/Entra.zsh fx"
 alias -r mimoserver="$Actius/Entra.zsh mimoserver"
 alias -r phenom="$Actius/Entra.zsh phenom"
