@@ -5,7 +5,7 @@ alias -r Files="$Actius/Files.zsh"
 # }}}
 
 # Alias Aplicacions {{{
-# alias -r lynx-proxy='lynx -cfg=/~/.config/lynx/lynx-proxy.cfg http://config.privoxy.org/'
+# alias -r lynx-proxy='lynx -cfg=~/.config/lynx/lynx-proxy.cfg http://config.privoxy.org/'
 alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r git='LC_ALL=en_US.UTF-8 git'
 alias -r NoSpace="$Actius/NoSpace.zsh"
