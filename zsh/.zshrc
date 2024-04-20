@@ -109,8 +109,8 @@ zstyle ':completion:*:messages' format "%{$fg_bold[red]%}%d%{$reset_color%}"
 zstyle ':completion:*:warnings' format "%{$fg_bold[red]%}%d%{$reset_color%}"
 # zstyle show completion menu if 2 or more items to select
 zstyle ':completion:*'                        menu select=2
-# 
-# # zstyle kill menu
+
+# zstyle kill menu
 zstyle ':completion:*:*:kill:*'               menu yes select
 zstyle ':completion:*:kill:*'                 force-list always
 zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=31"
