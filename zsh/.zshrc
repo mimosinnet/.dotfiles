@@ -1,16 +1,33 @@
 # Variables {{{
-HISTFILE=~/.zshhistory
-HISTSIZE=3000
-SAVEHIST=3000
-Actius=/home/mimosinnet/Dades/Scripts/Actius
+HISTFILE=~/.cache/zsh/history
+HISTSIZE=10000
+SAVEHIST=10000
 Zsh=/home/mimosinnet/.zsh
+Actius=$Zsh/Scripts
+# }}}
 
+# Options {{{
 # The meaning of these options can be found in man page of `zshoptions`.
-setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
-setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
 setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 setopt EXTENDED_HISTORY  # record command start time
+# història: elimina duplicats, ignora els que comencen amb espai
+setopt hist_ignore_all_dups hist_ignore_space
+# no fa falta cd
+setopt autocd
+# regex en operacions amb arxius: cp ^*.(tar|bz2|gz).
+setopt extendedglob
+# corregeix instruccions
+setopt correctall
+# Fem servir aquesta funció per a que funcioni el prompt, veure .zfunc/prompt
+# funció que permet "parameter expansion, command substitution and arithmetic expansion"
+# setopt prompt_subst
+
+# Directory stack
+# http://zsh.sourceforge.net/Intro/intro_6.html
+DIRSTACKSIZE=8
+setopt autopushd pushdminus pushdsilent pushdtohome
+alias dh='dirs -v'
 # }}}
 
 # plugins {{{
@@ -37,6 +54,9 @@ zstyle '*:compinit' arguments -u
 bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
 bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
 # }}}
+
+# Make Enter submit the command line straight from the menu
+bindkey -M menuselect '\r' .accept-line
 
 autoload -U edit-command-line zmv run-help promptinit
 promptinit
@@ -111,26 +131,6 @@ zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=3
 
 # }}}
 
-# opcions {{{
-# història: elimina duplicats, ignora els que comencen amb espai
-setopt hist_ignore_all_dups hist_ignore_space
-# no fa falta cd
-setopt autocd
-# regex en operacions amb arxius: cp ^*.(tar|bz2|gz).
-setopt extendedglob
-# corregeix instruccions
-setopt correctall
-# Fem servir aquesta funció per a que funcioni el prompt, veure .zfunc/prompt
-# funció que permet "parameter expansion, command substitution and arithmetic expansion"
-setopt prompt_subst
-
-# Directory stack
-# http://zsh.sourceforge.net/Intro/intro_6.html
-DIRSTACKSIZE=8
-setopt autopushd pushdminus pushdsilent pushdtohome
-alias dh='dirs -v'
-# }}}
-
 # Funcions {{{
 
 # Activar funcions:
@@ -146,17 +146,17 @@ source ~/.zfunc/Interface.zsh
 
 # keybindings {{{
 # https://bbs.archlinux.org/viewtopic.php?id=70801
-bindkey '^?' backward-delete-char	# back space
-bindkey '^[[7~' beginning-of-line	# home
-bindkey '^[[5~' up-line-or-history	# page up
-bindkey '^[[3~' delete-char		# del
-bindkey '^[[8~' end-of-line		# end
-bindkey '^[[6~' down-line-or-history	# page donw
-bindkey '^[[A' up-line-or-search	# up
-bindkey '^[[D' backward-char		# left
-bindkey '^[[B' down-line-or-search	# down
-bindkey '^[[C' forward-char 		# right
-bindkey '^[[2~' overwrite-mode		# insert
+# bindkey '^?' backward-delete-char	# back space
+# bindkey '^[[7~' beginning-of-line	# home
+# bindkey '^[[5~' up-line-or-history	# page up
+# bindkey '^[[3~' delete-char		# del
+# bindkey '^[[8~' end-of-line		# end
+# bindkey '^[[6~' down-line-or-history	# page donw
+# bindkey '^[[A' up-line-or-search	# up
+# bindkey '^[[D' backward-char		# left
+# bindkey '^[[B' down-line-or-search	# down
+# bindkey '^[[C' forward-char 		# right
+# bindkey '^[[2~' overwrite-mode		# insert
 # }}}
 
 source ${Zsh}/aliases.zsh
