@@ -24,7 +24,8 @@ Clone the git repository:
 Change to the dotfiles directory and stow the needed packages: 
 
     $ cd dotfiles
-    $ stoy i3
+    $ stow i3
+    $ stow nvim
     $ stow tmux
     $ stow zsh
 
