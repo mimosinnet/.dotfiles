@@ -1,6 +1,0 @@
-a help
-c corebird
-g gvim 
-o Obsidian
-z Zotero Personal
-Z Zotero UAB
