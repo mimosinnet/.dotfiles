@@ -1,0 +1,6 @@
+a help
+g gvim 
+n neovim
+o Obsidian
+z Zotero Personal
+Z Zotero UAB
