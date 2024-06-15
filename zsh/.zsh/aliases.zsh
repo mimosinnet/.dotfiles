@@ -47,9 +47,10 @@ alias -r Obsidian='flatpak run md.obsidian.Obsidian'
 alias -r FlatHub='flatpak run com.github.tchx84.Flatseal'
 # }}}
 
-# Alias Interface {{{
+# Alias Network {{{
 alias -r XarxaSegura="$Actius/Xarxa.zsh segur"
 alias -r XarxaRapida="$Actius/Xarxa.zsh rapid"
+alias -r OpenVpn="$Actius/openvpn.zsh"
 # }}}
 
 # Alias Mail {{{
@@ -118,6 +119,7 @@ alias -r mimomini12w="$Actius/Entra.zsh mimomini12w"
 alias -r mimofeina12w="$Actius/Entra.zsh mimofeina12w"
 alias -r nisomim12w="$Actius/Entra.zsh nisomim12w"
 alias -r mimory="$Actius/Entra.zsh mimory"
+alias -r generatech="$Actius/Entra.zsh generatech"
 # }}}
 
 # Alias Shell Commands {{{
@@ -140,6 +142,7 @@ alias -r ltr='ls -ltr'
 alias -r mv='mv -i'
 alias -r obre='xdg-open'
 alias -r ping='ping -c 3'
+alias -r Print_Screen="$Actius/Print_Screen.zsh"
 alias -r rl='readlink -f'
 alias -r tree='tree -AC'
 alias -r Sis="source $Actius/Sistema.zsh" 
@@ -159,7 +162,7 @@ alias -r PowerOffMimoMedia="$Actius/Wake.zsh poweroff mimomedia10 none"
 alias -r PowerOffFx="$Actius/Wake.zsh poweroff fx none"
 alias -r PowerOffMimoServer="$Actius/Wake.zsh poweroff mimoserver /etc/portage"
 alias -r PowerOffPhenom="$Actius/Wake.zsh poweroff phenom none"
-alias -r PowerOffMimory="$Actius/Wake.zsh poweroff mimory none /home/mimosinnet/Dades/Documents"
+alias -r PowerOffMimory="$Actius/Wake.zsh poweroff mimory /home/mimosinnet/Dades/Documents"
 alias -r WakeMimoMedia="$Actius/Wake.zsh wake mimomedia10"
 alias -r WakeFx="$Actius/Wake.zsh wake fx" 
 alias -r WakeMimoServer="$Actius/Wake.zsh wake mimoserver"
