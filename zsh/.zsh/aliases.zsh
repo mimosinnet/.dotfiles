@@ -109,7 +109,7 @@ alias -r Vimdiff_Psicosocial='RunRepo Vimdiff_Server'
 
 # Alias Servidors {{{
 #alias -r windows="TERM='xterm' ssh mimosinnet@windows11w"
-alias -r mimomedia="$Actius/Entra.zsh mimomedia"
+alias -r mimomedia="$Actius/Entra.zsh mimomedia10"
 alias -r fx="$Actius/Entra.zsh fx"
 alias -r mimoserver="$Actius/Entra.zsh mimoserver"
 alias -r phenom="$Actius/Entra.zsh phenom"
