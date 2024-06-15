@@ -11,8 +11,9 @@
 
 ## Configurations stored in this repository
 
-* zsh
+* i3
 * tmux
+* zsh
 
 ## Cretate dotfiles from github repository
 
@@ -23,8 +24,9 @@ Clone the git repository:
 Change to the dotfiles directory and stow the needed packages: 
 
     $ cd dotfiles
-    $ stow zsh
+    $ stoy i3
     $ stow tmux
+    $ stow zsh
 
 ## Add dotfiles 
 
@@ -34,7 +36,7 @@ Change to the dotfiles directory and stow the needed packages:
 
 Example: 
 
-    $ cd dotfiles
+    $ cd .dotfiles
     $ mkdir zsh
     $ vim zsh/.zshrc
     $ stow zsh
