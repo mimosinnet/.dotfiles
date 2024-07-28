@@ -381,7 +381,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 # }}}
 
-
 # 1 Files {{{
 mode "Files" {
 		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/1_help_Files.txt
@@ -422,6 +421,7 @@ mode "Mail" {
 mode "Utils" {
 	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/3_help_Utils.txt
     # bindsym o exec flatpak run md.obsidian.Obsidian
+    bindsym f exec autofirma
     bindsym g exec gvim
     bindsym n exec exec alacritty -e nvim
     bindsym o exec obsidian
