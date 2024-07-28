@@ -39,10 +39,10 @@ description=(
 )
 instruction=(
   1 'eix-update'
-  2 'emerge -GDNtuav --with-bdeps=y --backtrack=100 --autounmask-keep-masks=y @world'
-  3 'emerge -G @preserved-rebuild'
-  4 'revdep-rebuild -- -G'
-  5 'perl-cleaner all -- -G'
+  2 'emerge -DNtuav --with-bdeps=y --backtrack=100 --autounmask-keep-masks=y @world'
+  3 'emerge @preserved-rebuild'
+  4 'revdep-rebuild'
+  5 'perl-cleaner all'
   6 'eselect python cleanup'
   7 'eix-test-obsolete'
 )
