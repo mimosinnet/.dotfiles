@@ -4,6 +4,7 @@ dirs_auto=(
     /
     /home/mimosinnet/Baixades
     /home/mimosinnet/Dades/IntercanviWin
+    /home/mimosinnet/Dades/OneDrive
     /home/mimosinnet/Zotero
 )
 dirs_noauto=(
