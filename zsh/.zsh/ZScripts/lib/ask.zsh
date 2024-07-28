@@ -1,6 +1,6 @@
 function _ask() {
   local command=$1
-  print "Would you like:\n $command \n"
+  print "Vols executar:\n $command \n"
   read -k 1 "answer? (y/n/e) "
   print "\n"
   case $answer in 
@@ -14,7 +14,7 @@ function _ask() {
       exit
       ;;
     *)
-      print "\nYou have selected $answer"
+      print "\nHas seleccionat $answer"
       exit
       ;;
   esac
