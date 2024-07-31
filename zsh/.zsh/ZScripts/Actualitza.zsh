@@ -2,16 +2,6 @@
 
 # Check conditions {{{
 lib="${0:a:h}/lib"
-source "$lib/mount_portage_check.zsh"
-
-
-if _mount_portage_check
-then
-  print "portage shared mounted"
-else
-  print "you need to mount portage shares"
-  exit
-fi
 
 # grep -q /boot /etc/mtab \
 #   || mount /boot
