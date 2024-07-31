@@ -11,12 +11,11 @@ exec parcellite
 exec blueman-applet
 # exec urxvtd -q -f -o
 # exec alacritty -e tmux
-exec xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output HDMI-A-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate normal
-exec wpa_gui -t
+exec xrandr --output HDMI1 --mode 1920x1080 --pos 1921x0 --rotate normal --output HDMI2 --mode 1920x1080 --pos 0x0 --rotate normal --output VGA1 --off --output VIRTUAL1 --off
 exec sleep 20s && google-chrome-stable --new-window --profile-directory="Default"
 exec sleep 30s && /usr/local/bin/Telegram/Telegram
 exec sleep 40s && pasystray
-exec sleep 70s && thunderbird-bin
+# exec sleep 70s && thunderbird-bin
 exec sleep 80s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"
 exec sleep 10m && vivaldi
 exec sleep 15m && /usr/bin/signal-desktop
