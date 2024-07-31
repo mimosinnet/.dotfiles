@@ -30,9 +30,9 @@ alias -r DM='du -hd 1 | grep M'
 # }}}
 
 # Alias emerge {{{
-alias -r  E='emerge -Gav'
-alias -r E1='emerge -1Gav'
-alias -r Eu='emerge -1GDNtuav'
+alias -r  E='emerge -av'
+alias -r E1='emerge -1av'
+alias -r Eu='emerge -1DNtuav'
 alias -r Ec='emerge -1cav'
 alias -r EC='emerge -1Cav'
 alias -r EixUse='eix --only-names --installed-with-use' 
@@ -131,7 +131,7 @@ alias -r DF="$Actius/DF.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
 alias -r Viming='vim /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
-alias -r emerge='emerge --getbinpkgonly --usepkgonly'
+# alias -r emerge='emerge --getbinpkgonly --usepkgonly'
 alias -r feh='feh --edit --auto-zoom --full-screen -d'
 alias -r ls='ls --color=auto'
 alias -r lisah='ls -lisah'
