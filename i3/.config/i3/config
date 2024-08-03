@@ -17,7 +17,7 @@ exec sleep 20s && google-chrome-stable --new-window --profile-directory="Default
 exec sleep 30s && /usr/local/bin/Telegram/Telegram
 exec sleep 40s && pasystray
 exec sleep 70s && thunderbird-bin
-exec sleep 80s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar"
+exec sleep 80s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"
 exec sleep 10m && vivaldi
 exec sleep 15m && /usr/bin/signal-desktop
 # exec sleep 6m && discord
@@ -46,14 +46,14 @@ set  $9 KP_Prior
 set $10 KP_Insert
 set  $W1  "1: Files"
 set  $W2  "2: Mail"
-set  $W3  "3: Other"
+set  $W3  "3: Utils"
 set  $W4  "4: Browsers"
 set  $W5  "5: System"
 set  $W6  "6: Leisure"
 set  $W7  "7: Chrome"
 set  $W8  "8: People"
 set  $W9  "9: Office"
-set $W10 "10: Utils"
+set $W10 "10: Zero"
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -228,14 +228,13 @@ bindsym Control+$mod+$10 move container to workspace $W10; workspace $W10
 # default applications on workspace {{{
 bindsym Shift+$1  workspace  $W1; mode "Files"
 bindsym Shift+$2  workspace  $W2; mode "Mail"
-bindsym Shift+$3  workspace  $W3; exec gvim
+bindsym Shift+$3  workspace  $W3; mode "Utils"
 bindsym Shift+$4  workspace  $W4; mode "Browsers"
 bindsym Shift+$5  workspace  $W5; mode "System"
 bindsym Shift+$6  workspace  $W6; mode "Oci"
 bindsym Shift+$7  workspace  $W7; exec google-chrome-stable
 bindsym Shift+$8  workspace  $W8; mode "People"
 bindsym Shift+$9  workspace  $W9; mode "Office"
-bindsym Shift+$10 workspace $W10; mode "Utils"
 # }}}
 
 # 4.11. Arbitrary commands for specific windows {{{
@@ -308,7 +307,7 @@ bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
 # Return
 # bindsym $mod+Return 		  exec urxvtc
 # bindsym $mod+Shift+Return exec urxvtd -f
-bindsym $mod+Return 	  exec alacritty 
+bindsym $mod+Return 	  exec alacritty --working-directory /home/mimosinnet/Baixades 
 bindsym $mod+Shift+Return exec alacritty -e tmux
 
 # a: help
@@ -382,20 +381,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 # }}}
 
-# 0 Utils {{{
-mode "Utils" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/0_help_Utils.txt
-    # bindsym o exec flatpak run md.obsidian.Obsidian
-    bindsym o exec obsidian
-    bindsym z exec zotero
-    bindsym Z exec zotero -P
-
-	# back to normal: Enter or Escape
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-}
-# }}}
-
 # 1 Files {{{
 mode "Files" {
 		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/1_help_Files.txt
@@ -432,6 +417,23 @@ mode "Mail" {
 }
 # }}}
 
+# 3 Utils {{{
+mode "Utils" {
+	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/3_help_Utils.txt
+    # bindsym o exec flatpak run md.obsidian.Obsidian
+    bindsym f exec autofirma
+    bindsym g exec gvim
+    bindsym n exec exec alacritty -e nvim
+    bindsym o exec obsidian
+    bindsym z exec zotero
+    bindsym Z exec zotero -P
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+# }}}
+
 # 4 Browsers {{{
 mode "Browsers" {
 	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/4_help_Browsers.txt
@@ -457,7 +459,7 @@ mode "System" {
 	bindsym g exec glade
 	bindsym l exec urxvtc -e vim ~/0Enllaços/Linux/linux.txt 
 	bindsym m exec xmodmap -e "pointer = 1 2 3 4 5"
-	bindsym p exec alacritty -e /home/mimosinnet/.zsh/Scripts/Presentacions.zsh
+	bindsym p exec alacritty -e /home/mimosinnet/.zsh/ZScripts/Presentacions.zsh
 	bindsym u exec unetbootin 
 	bindsym x exec xterm 
 

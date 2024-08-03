@@ -1,6 +1,7 @@
 a help
-c corebird
-g gvim 
+f autoFirma
+g Gvim 
+n Neovim
 o Obsidian
 z Zotero Personal
 Z Zotero UAB
