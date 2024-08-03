@@ -3,7 +3,7 @@ HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 Zsh=/home/mimosinnet/.zsh
-Actius=$Zsh/Scripts
+Actius=$Zsh/ZScripts
 # }}}
 
 # Options {{{
