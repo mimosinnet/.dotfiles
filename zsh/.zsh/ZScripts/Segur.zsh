@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-readonly uuid=${1:?'Please, define UUID'}
+readonly uuid=${1:?'Please, define destination UUID'}
 readonly origin=${2:?'Please, define origin folder'}
 readonly destination=${3:?'Please, define destination folder'}
 readonly option=${4:='test'}
