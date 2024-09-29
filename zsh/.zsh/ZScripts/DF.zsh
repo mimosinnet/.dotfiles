@@ -4,7 +4,7 @@ dirs_auto=(
     /
     /home/mimosinnet/Baixades
     /home/mimosinnet/Dades/IntercanviWin
-    /home/mimosinnet/Dades/OneDrive
+    /home/mimosinnet/Dades/Drive
     /home/mimosinnet/Zotero
 )
 dirs_noauto=(
@@ -13,6 +13,7 @@ dirs_noauto=(
     /home/mimosinnet/Dades/Backup/bkp_presentacions
     /home/mimosinnet/Dades/VirtualBox/Windows10
     /mnt/AlpineLinux
+    /mnt/bkp/baixades
 )
 line="============================================================================"
 
