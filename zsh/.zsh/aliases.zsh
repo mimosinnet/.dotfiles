@@ -50,7 +50,7 @@ alias -r FlatHub='flatpak run com.github.tchx84.Flatseal'
 # Alias Network {{{
 alias -r XarxaSegura="$Actius/Xarxa.zsh segur"
 alias -r XarxaRapida="$Actius/Xarxa.zsh rapid"
-alias -r OpenVpn="$Actius/openvpn.zsh"
+alias -r OpenVpn="$Actius/OpenVpn.zsh"
 # }}}
 
 # Alias Mail {{{
