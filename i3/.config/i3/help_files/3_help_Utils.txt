@@ -1,7 +1,0 @@
-a help
-f autoFirma
-g Gvim 
-n Neovim
-o Obsidian
-z Zotero Personal
-Z Zotero UAB
