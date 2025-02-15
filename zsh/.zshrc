@@ -141,7 +141,7 @@ source ~/.zfunc/adreça
 source ~/.zfunc/auto_ls
 source ~/.zfunc/marks
 # source ~/.zfunc/prompt
-source ~/.zfunc/Interface.zsh
+# source ~/.zfunc/Interface.zsh
 # }}}
 
 # keybindings {{{
