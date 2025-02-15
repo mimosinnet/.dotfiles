@@ -1,3 +1,5 @@
+# i3 config file
+
 # Info {{{
 
 # Should you change your keyboard layout some time, delete
@@ -20,6 +22,7 @@ exec sleep 70s && thunderbird-bin
 exec sleep 80s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"
 exec sleep 10m && vivaldi
 exec sleep 15m && /usr/bin/signal-desktop
+exec sleep 20m && alacritty -e nvim
 # exec sleep 6m && discord
 # exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
 # exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
@@ -54,14 +57,21 @@ set  $W7  "7: Chrome"
 set  $W8  "8: People"
 set  $W9  "9: Office"
 set $W10 "10: Zero"
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+# Home row direction keys, like vim (not used)
+# set $left h
+# set $down j
+# set $up k
+# set $right l
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:monospace 8
+
 # }}}
 
-# 4.2. Fonts {{{
+# 4. Configuring i3 {{{
+
+# 4.3. Fonts {{{
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -79,23 +89,14 @@ font pango:DejaVu Sans Mono 8
 
 # }}}
 
-# 4.5. floating {{{
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod
+# 4.11. Window title alignment {{{
+title_align left 
+# }}}
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
 
 # }}}
 
-# 5. Status bar {{{1
+# 5. Configuring i3bar {{{1
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -113,29 +114,55 @@ bar {
 
 # 6. List of commands {{{1
 
-# Manipulating laYout {{{ 
-
-bindsym $mod+y 		layout stacking
-bindsym $mod+Shift+y 	layout tabbed
-bindsym $mod+Control+y 	layout toggle split
-
-# maximaze focused container (full screen)                                                                                                                                                    
-bindsym $mod+m fullscreen                                                                                                                                                                     
-bindsym $mod+Control+m fullscreen toggle 
+# 6.2. Splitting containers {{{
 
 # "Split" the current focussed object horizontally or vertically
+# New window will open horizontally or vertically
 bindsym $mod+s split h
-bindsym $mod+shift+s split v
+bindsym $mod+Shift+s split v
+bindsym $mod+Control+s split toggle
+
+# }}}
+
+# 6.3 Manipulating layout {{{ 
+
+# Y: laYout
+bindsym $mod+y layout stacking
+bindsym $mod+Shift+y layout tabbed
+bindsym $mod+Control+y layout toggle 
+
+# M: Maximaze focused container (full screen)
+bindsym $mod+m fullscreen enable
+bindsym $mod+Shift+m fullscreen disable
+bindsym $mod+Control+m fullscreen toggle 
+
+# L: fLoating windows 
+bindsym $mod+L floating enable
+bindsym $mod+Shift+L floating disable
+bindsym $mod+Control+L floating toggle 
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+
+# 4.7. The floating modifier
+floating_modifier $mod
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag modifier titlebar
 
 # }}}
 
 # 6.4. Focusing/Moving containers {{{
 
 # Move your focus around
-bindsym $mod+$left focus left                                                                                                                                                                 
-bindsym $mod+$down focus down                                                                                                                                                                 
-bindsym $mod+$up focus up                                                                                                                                                                     
-bindsym $mod+$right focus right                                                                                                                                                               
+# bindsym $mod+$left focus left
+# bindsym $mod+$down focus down
+# bindsym $mod+$up focus up
+# bindsym $mod+$right focus right
 # bindsym $mod+ntilde focus right
 
 # alternatively, you can use the cursor keys:
@@ -156,16 +183,37 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# f: focus the parent/child container
+bindsym $mod+f         focus parent
+bindsym $mod+Shift+f   focus child
+# Swap focus between the tiling area and the floating area
+bindsym $mod+Control+f focus mode_toggle
+
+
 # }}}
 
-# 6.7. Moving containers/workspaces to RandR outputs {{{
+# 6.10. Moving containers/workspaces to RandR outputs {{{
 bindsym $mod+v move container to output right
 bindsym $mod+Shift+v move container to output left
 bindsym $mod+Ctrl+v move workspace to output right
 bindsym $mod+Shift+Ctrl+v move workspace to output left
 # }}}
 
-# 6.14. Reloading/Restarting/Exiting {{{
+# 6.16. Window title icon {{{
+for_window [all] title_window_icon yes
+# }}}
+
+
+# 6.17. Changing border style {{{
+# border normal|pixel|toggle [<n>]
+# border none
+
+default_border pixel 1
+default_floating_border pixel
+
+# }}}
+
+# 6.20. Reloading/Restarting/Exiting {{{
 
 # reload the configuration file
 bindsym $mod+c reload
@@ -175,6 +223,17 @@ bindsym $mod+Shift+c restart
 # no_focus [class="Quit.raku"]
 bindsym $mod+Shift+q exec Quit
 # bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'  'i3-msg exit'"
+
+# }}}
+
+# 6.21. Scratchpad {{{
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show
 
 # }}}
 
@@ -239,6 +298,7 @@ bindsym Shift+$9  workspace  $W9; mode "Office"
 
 # 4.11. Arbitrary commands for specific windows {{{
 for_window [class="Xmessage"] floating enable
+for_window [class="(?i)gxmessage"] floating enable
 for_window [class="Quit"] floating enable
 for_window [class="qpaeq"] floating enable
 for_window [class="pavucontrol"] floating enable
@@ -313,9 +373,6 @@ bindsym $mod+Shift+Return exec alacritty -e tmux
 # a: help
 bindsym $mod+a exec xmessage -nearmouse -file ~/.config/i3/help_files/x_keys_xmessage.txt
 
-# f: focus the parent/child container
-bindsym $mod+f       focus parent
-bindsym $mod+Shift+f focus child
 
 # p: alsamixer, pavucontrol
 bindsym $mod+p         exec urxvtc -e alsamixer
@@ -337,8 +394,8 @@ bindsym $mod+Control+u exec amixer -q -D pulse sset Master toggle && pkill -RTMI
 # Print Screen {{{
 bindsym $mod+Print exec Print_Screen root
 bindsym --release $mod+Shift+Print exec Print_Screen area
-bindsym $mod+Mod1+Print exec Print_Screen delay
-bindsym $mod+Control+Print exec Print_Screen window
+bindsym $mod+Control+Print exec Print_Screen delay
+bindsym $mod+Control+Print+Shift exec Print_Screen window
 # }}}
 
 # }}}
@@ -347,7 +404,7 @@ bindsym $mod+Control+Print exec Print_Screen window
 # resize window (you can also use the mouse for that)
 mode "resize" {
 
-		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/x_help_Resize.txt
+		bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/x_help_Resize.txt
 
         # These bindings trigger as soon as you enter the resize mode
 
@@ -383,7 +440,7 @@ bindsym $mod+r mode "resize"
 
 # 1 Files {{{
 mode "Files" {
-		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/1_help_Files.txt
+		bindsym a exec Gxmessage.zsh.zsh ~/.config/i3/help_files/1_help_Files.txt
 		bindsym m exec urxvtc -e /usr/local/bin/Munta.sh usb
 		bindsym p exec pcmanfm
     bindsym r exec urxvtc -e ranger
@@ -399,16 +456,16 @@ mode "Files" {
 
 # 2 Mail {{{
 mode "Mail" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/2_help_Mail.txt
+	bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/2_help_Mail.txt
 	bindsym c exec urxvtc -j -ss -e perl6 /home/mimosinnet/.config/Repos/bin/Correu.raku
-	bindsym m exec xmessage -nearmouse -file ~/.config/i3/help_files/2_MuttLineEditorKeys.txt
-	bindsym n exec xmessage -nearmouse -file ~/.config/i3/help_files/2_MuttPatternModifier.txt
+	bindsym m exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/2_MuttLineEditorKeys.txt
+	bindsym n exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/2_MuttPatternModifier.txt
 	bindsym o exec urxvtc -j -ss -e offlineimap 
   bindsym s exec skypeforlinux
   bindsym t exec thunderbird-bin
 	bindsym u exec gvim ~/Dades/Documents/Personal/Directori/UAB.txt
   bindsym z exec zoom
-	bindsym Shift+m exec xmessage -nearmouse -file ~/.config/i3/help_files/MuttPatternModifier.txt
+	bindsym Shift+m exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/MuttPatternModifier.txt
   bindsym Shift+t exec teams
 
 	# back to normal: Enter or Escape
@@ -419,8 +476,9 @@ mode "Mail" {
 
 # 3 Utils {{{
 mode "Utils" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/3_help_Utils.txt
+	bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/3_help_Utils.txt
     # bindsym o exec flatpak run md.obsidian.Obsidian
+    bindsym c exec crqt
     bindsym f exec autofirma
     bindsym g exec gvim
     bindsym n exec exec alacritty -e nvim
@@ -436,7 +494,7 @@ mode "Utils" {
 
 # 4 Browsers {{{
 mode "Browsers" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/4_help_Browsers.txt
+	bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/4_help_Browsers.txt
 	bindsym d exec dillo
 	bindsym e exec urxvtc -e elinks http://www.google.es 
 	bindsym f exec firefox-bin
@@ -451,16 +509,15 @@ mode "Browsers" {
 
 # 5 System {{{
 mode "System" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/5_help_System.txt
+	bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/5_help_System.txt
 	bindsym Shift+e exec setxkbmap -model pc104 -layout es 
-	bindsym Shift+c exec urxvtd -f 
-	bindsym c exec urxvtc 
-	bindsym e exec urxvtc -geometry 128x42 -e bash -c "su -c elogv" 
+	bindsym b exec bleachbit
+	bindsym e exec alacritty -geometry 128x42 -e bash -c "su -c elogv" 
 	bindsym g exec glade
-	bindsym l exec urxvtc -e vim ~/0Enllaços/Linux/linux.txt 
+	bindsym l exec alacritty -e vim ~/0Enllaços/Linux/linux.txt 
 	bindsym m exec xmodmap -e "pointer = 1 2 3 4 5"
+  bindsym n exec alacritty -e ncdu -x
 	bindsym p exec alacritty -e /home/mimosinnet/.zsh/ZScripts/Presentacions.zsh
-	bindsym u exec unetbootin 
 	bindsym x exec xterm 
 
 	# back to normal: Enter or Escape
@@ -471,9 +528,10 @@ mode "System" {
 
 # 6 Oci {{{
 mode "Oci" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/6_help_Oci.txt
+	bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/6_help_Oci.txt
 	bindsym d exec darktable
 	bindsym g exec gimp
+	bindsym h exec ghb
 	bindsym i exec inkscape
 	bindsym p exec pavucontrol --class=pavucontrol
 	# bindsym s exec shotcut
@@ -490,7 +548,7 @@ mode "Oci" {
 
 # 8 People {{{
 mode "People" {
-	bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/8_help_People.txt
+	bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/8_help_People.txt
 	bindsym i exec urxvtc -e irssi
 	bindsym r exec urxvtc -e rtorrent
 	bindsym t exec /usr/local/bin/Telegram/Telegram
@@ -505,7 +563,7 @@ mode "People" {
 
 # 9 Office {{{
 mode "Office" {
-		bindsym a exec xmessage -nearmouse -file ~/.config/i3/help_files/9_help_Office.txt
+		bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/9_help_Office.txt
 		bindsym b exec lobase  
 		bindsym c exec localc  
 		bindsym d exec lodraw  
@@ -529,9 +587,4 @@ mode "Office" {
 
 # 1}}}
 
-# Start Applications {{{
-# exec ~/.config/i3/scripts/Start_Apps.sh
-
-# }}}
-
-# vim:filetype=i3
+# vim:filetype=i3config
