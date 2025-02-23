@@ -1,7 +1,9 @@
 a help
+c crqt - ebook reader
 f autoFirma
 g Gvim 
 n Neovim
 o Obsidian
+x Xournalpp
 z Zotero Personal
 Z Zotero UAB
