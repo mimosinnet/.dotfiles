@@ -1,11 +1,11 @@
-Shift+c console recover
 Shift+e es keyboard layout
 a help
+b bleachbit - remove files from system
 c console
 e elog viewer
 g glade
 l linux help
 m mouse normal
+n ncdu - disk space
 p presentacions
-u unetbootin 
 x xterm 

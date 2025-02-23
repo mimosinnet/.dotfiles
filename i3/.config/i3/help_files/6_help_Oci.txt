@@ -1,5 +1,7 @@
 a help
 d darktable (images)
+h handbrake (ghb)
+  Video: retallar, afegir subtítols i més.
 g gimp
 i inkscape
 p pavucontrol

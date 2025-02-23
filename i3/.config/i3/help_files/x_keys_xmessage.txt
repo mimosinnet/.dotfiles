@@ -1,33 +1,34 @@
 Keyboard Shortcuts 
 
-		<key>           shift		ctrl		S+Ctrl
-		--------------------------------------------------------
-Menu		dmenu		i4-dmenu-desktop
+                <key>           shift           ctrl            S+Ctrl
+                --------------------------------------------------------
+Menu            dmenu           i4-dmenu-desktop
 
-* Window-key + 	<key>           shift		ctrl		S+Ctrl
-        	--------------------------------------------------------
- return		terminal	
- space		focus_toggle    float_toggle	
- arrows		focus 		move
- Print		ScreenShot	AreaShot	DelayShot 	WindowShot
+* Window-key +  <key>           shift           ctrl            S+Ctrl
+                --------------------------------------------------------
+ return         terminal        
+ arrows         focus           move
+ Print          ScreenShot      AreaShot        DelayShot       WindowShot
+ - (minus)      ScrathPad Show  ScrachPad Move
  
-* Window-key + 	<key>           shift		ctrl		S+Ctrl
-        	--------------------------------------------------------
- a help		
- c config	reload		restart
- f focus        parent          child
- m Maximize	fullscreen                      fulls-toggle
+* Window-key +  <key>           shift           ctrl            S+Ctrl
+                --------------------------------------------------------
+ a help         
+ c config       reload          restart
+ f focus        parent          child           toggle
+ l fLoating     enable          disable         toggle
+ m Maximize     fullscreen                      fulls-toggle
  p alsa         alsamixer       pavucontrol     pulseudio -k
- q Quit         Window	        i3
- r Resize	resize
- s split 	horizontal	vertical
- v moVe 	moVe cont Rigt	moVe cont Left  moVe worksp R   moVe worksp L
- y laYout	stacking	tabbed		toggle
+ q Quit         Window          i3
+ r Resize       resize
+ s split        horizontal      vertical        toggle
+ v moVe         moVe cont Rigt  moVe cont Left  moVe worksp R   moVe worksp L
+ y laYout       stacking        tabbed          toggle
 
 * Numeric Pad
- Normal		Move to workspace
- Shift		Go to workspace and exec default application
- Ctrl		Move container to workspace 
+ Normal         Move to workspace
+ Shift          Go to workspace and exec default application
+ Ctrl           Move container to workspace 
  Shift+W-Key    Move container to worksapace and move to workspace
 
  vim: tabstop=8 nospell
