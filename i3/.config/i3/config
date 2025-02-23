@@ -483,6 +483,7 @@ mode "Utils" {
     bindsym g exec gvim
     bindsym n exec exec alacritty -e nvim
     bindsym o exec obsidian
+    bindsym x exec xournalpp
     bindsym z exec zotero
     bindsym Z exec zotero -P
 
