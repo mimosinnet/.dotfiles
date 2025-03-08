@@ -6,9 +6,11 @@ alias -r Files="$Actius/Files.zsh"
 
 # Alias Aplicacions {{{
 # alias -r lynx-proxy='lynx -cfg=~/.config/lynx/lynx-proxy.cfg http://config.privoxy.org/'
-alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r git='LC_ALL=en_US.UTF-8 git'
+alias -r Lichess='/usr/local/bin/LDA/Lichess'
+alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r NoSpace="$Actius/NoSpace.zsh"
+alias -r LO='libreoffice24.8'
 # }}}
 
 # Alias Backup {{{
@@ -41,8 +43,6 @@ alias -r EixPack='eix --only-names -I'
 
 # Alias Flatpak {{{
 alias -r Jamovi='flatpak run org.jamovi.jamovi'
-alias -r LibreOffice='flatpak run org.libreoffice.LibreOffice'
-alias -r Obsidian='flatpak run md.obsidian.Obsidian'
 # Flathub: Opcions del platpak 
 alias -r FlatHub='flatpak run com.github.tchx84.Flatseal'
 # }}}
@@ -85,6 +85,10 @@ alias -r 5t='perl -I ../lib'
 alias -r T5='PERL5LIB=lib prove'
 # }}}
 
+# Alias Python {{{
+alias -r PythonEnv='. /home/mimosinnet/.config/python/VirtualEnv/bin/activate'
+# }}}
+
 # Alias Raku {{{
 alias -r 6='raku'
 alias -r 6c='raku -c'
@@ -120,16 +124,17 @@ alias -r mimofeina12w="$Actius/Entra.zsh mimofeina12w"
 alias -r nisomim12w="$Actius/Entra.zsh nisomim12w"
 alias -r mimory="$Actius/Entra.zsh mimory"
 alias -r generatech="$Actius/Entra.zsh generatech"
+alias -r mimouab="$Actius/Entra.zsh mimouab"
 # }}}
 
 # Alias Shell Commands {{{
 # alias -r rtorrent='ssh rtorrent@mimoalf'
+alias -r Arxiu="$Actius/Arxiu.zsh"
 alias -r Cating='cat /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r Colors="print 'PrintColors to print colors' &&  source /home/mimosinnet/.zfunc/PrintColors.zsh"
 alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
 alias -r DF="$Actius/DF.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
-alias -r Viming='vim /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
 alias -r emerge='emerge --getbinpkgonly --usepkgonly'
 alias -r feh='feh --edit --auto-zoom --full-screen -d'
