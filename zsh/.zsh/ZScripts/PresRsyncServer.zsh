@@ -7,6 +7,7 @@ to_generatech='mimosinnet@generatech:/home/mimosinnet/Dades/Webs'
 lib="${0:a:h}/lib"
 # funció _continuar
 source $lib/continuar.zsh
+source $lib/ask.zsh
 
 # sincronitzar servidor ip to {{{
 # $1: servidor
@@ -36,6 +37,6 @@ function sincronitzar() {
 }
 # }}}
 
-sincronitzar mimouab    158.109.145.115 $to_mimouab
-sincronitzar generatech 158.109.152.23  $to_generatech
+_ask "sincronitzar mimouab"    && sincronitzar mimouab    158.109.145.115 $to_mimouab
+_ask "sincronitzar generatech" && sincronitzar generatech 158.109.152.23  $to_generatech
 

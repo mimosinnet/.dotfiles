@@ -7,7 +7,7 @@ while ps -C $process | grep -q $process
 do
   zenity --warning --title "Wait.." --timeout 3 \
   --text '<span color="red" weight="bold">rsync backup in process</span>. <span weight="bold">Do not quit!</span>'
-  sleep 3
+  sleep 15
 done
 
 # Do not exit if nfs shares are mounted

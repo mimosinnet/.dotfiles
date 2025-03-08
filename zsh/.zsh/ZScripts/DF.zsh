@@ -9,11 +9,11 @@ dirs_auto=(
 )
 dirs_noauto=(
     /home/mimosinnet/Dades/Imatges
-    /home/mimosinnet/Dades/Backup/bkp_zotero
-    /home/mimosinnet/Dades/Backup/bkp_presentacions
     /home/mimosinnet/Dades/VirtualBox/Windows10
     /mnt/AlpineLinux
     /mnt/bkp/baixades
+    /mnt/bkp/presentacions
+    /mnt/bkp/zotero
 )
 line="============================================================================"
 
