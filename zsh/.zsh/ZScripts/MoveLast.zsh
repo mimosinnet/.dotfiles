@@ -1,8 +1,12 @@
 #!/bin/zsh
 
-file=$(ls "$HOME/$1/"*(.om[1]))
+file_from=$(ls "$HOME/$1/"*(.om[1]))
+file=$file_from:t
 
-mv $file .
+mv $file_from .
 
-print "$file"
-print "$file:t"
+file_to=$(readlink -f $file)
+
+print "File: $file:t"
+print "From: $file_from"
+print "To:   $file_to"
