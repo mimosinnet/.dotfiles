@@ -129,7 +129,7 @@ alias -r mimouab="$Actius/Entra.zsh mimouab"
 
 # Alias Shell Commands {{{
 # alias -r rtorrent='ssh rtorrent@mimoalf'
-alias -r Arxiu="$Actius/Arxiu.zsh"
+alias -r Borrem="$Actius/Borrem.zsh"
 alias -r Cating='cat /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r Colors="print 'PrintColors to print colors' &&  source /home/mimosinnet/.zfunc/PrintColors.zsh"
 alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
