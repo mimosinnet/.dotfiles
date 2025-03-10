@@ -565,18 +565,11 @@ mode "People" {
 # 9 Office {{{
 mode "Office" {
 		bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/9_help_Office.txt
-		bindsym b exec lobase  
-		bindsym c exec localc  
-		bindsym d exec lodraw  
-		bindsym f exec lofromtemplate  
     bindsym g exec gummi
-		bindsym i exec loimpress  
-		bindsym m exec lomath  
+		bindsym l exec libreoffice24.8
     bindsym p exec mupdf
     bindsym q exec qpdfview
     bindsym t exec texmaker
-		bindsym w exec lowriter
-		bindsym W exec loweb  
 		bindsym x exec xmind
 		bindsym z exec zathura
 
