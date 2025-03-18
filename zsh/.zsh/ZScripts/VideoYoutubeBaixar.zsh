@@ -43,6 +43,7 @@ function baixar() {
         4. Baixar Vídeo sub es
         5. Baixar Vídeo sub en"
     read -k 1 "answer?Quina opció vols? (1-5) "
+    echo "\n"
     case $answer in
         1)
             opt1=""
@@ -67,25 +68,32 @@ function baixar() {
         5)
             opt1='--write-subs'
             opt2='--sub-langs'
-            opt3='en-US'
+            opt3='en.*'
             ;;
         *)
             print 'Opció incorrecta'
             exit
             ;;
     esac
+    # print "\n yt-dlp $opt1 $opt2 $opt3 -o 'video.%(ext)s' $url"
     yt-dlp $opt1 $opt2 $opt3 -o 'video.%(ext)s' $url
 
     if [[ $answer -ne 1 ]]
     then
-      read -k 1 "incrustar?Vols incrustar subtítols? (y/n) "
-      if [[ "incrustar" == "y" ]]
-      then
-        file=$(ls video.(mp4|webm|mkv))
-        sub=$(ls video.*.vtt)
-        ext=${file:e}
-        ffmpeg -i $file -vf subtitles=$sub out_video.$ext
-      fi
+      local answers=(y Y n N)
+      while [[ $answers[(Ie)$incrustar] == 0 ]]
+      do
+        read -k 1 "incrustar?Vols incrustar subtítols? (y/n) "
+        echo "\n"
+        if [[ $incrustar == "y" ]]
+        then
+          file=$(ls video.(mp4|webm|mkv))
+          sub=$(ls video.*.vtt)
+          ext=${file:e}
+          # print "\n ffmpeg -i $file -vf subtitles=$sub out_video.$ext"
+          ffmpeg -i $file -vf subtitles=$sub out_video.$ext
+        fi
+      done
     fi
 }
 # }}}
