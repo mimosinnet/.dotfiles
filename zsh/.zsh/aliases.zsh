@@ -6,9 +6,10 @@ alias -r Files="$Actius/Files.zsh"
 
 # Alias Aplicacions {{{
 # alias -r lynx-proxy='lynx -cfg=~/.config/lynx/lynx-proxy.cfg http://config.privoxy.org/'
-alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r git='LC_ALL=en_US.UTF-8 git'
+alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r NoSpace="$Actius/NoSpace.zsh"
+alias -r LO='libreoffice24.8'
 # }}}
 
 # Alias Backup {{{
@@ -50,7 +51,7 @@ alias -r FlatHub='flatpak run com.github.tchx84.Flatseal'
 # Alias Network {{{
 alias -r XarxaSegura="$Actius/Xarxa.zsh segur"
 alias -r XarxaRapida="$Actius/Xarxa.zsh rapid"
-alias -r OpenVpn="$Actius/OpenVpn.zsh"
+alias -r OpenVpn="$Actius/openvpn.zsh"
 # }}}
 
 # Alias Mail {{{
@@ -124,14 +125,13 @@ alias -r generatech="$Actius/Entra.zsh generatech"
 
 # Alias Shell Commands {{{
 # alias -r rtorrent='ssh rtorrent@mimoalf'
+alias -r Borrem="$Actius/Borrem.zsh"
 alias -r Cating='cat /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r Colors="print 'PrintColors to print colors' &&  source /home/mimosinnet/.zfunc/PrintColors.zsh"
 alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
 alias -r DF="$Actius/DF.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
-alias -r Viming='vim /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
-# alias -r emerge='emerge --getbinpkgonly --usepkgonly'
 alias -r feh='feh --edit --auto-zoom --full-screen -d'
 alias -r ls='ls --color=auto'
 alias -r lisah='ls -lisah'
