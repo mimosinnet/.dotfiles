@@ -1,0 +1,5 @@
+# posa un paquet a Mask
+function Mask() {
+	echo "<$1" >> /etc/portage/package.mask/emerge_conflicts
+}
+
