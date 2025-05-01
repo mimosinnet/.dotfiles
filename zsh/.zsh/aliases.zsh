@@ -10,7 +10,7 @@ alias -r git='LC_ALL=en_US.UTF-8 git'
 alias -r Lichess='/usr/local/bin/LDA/Lichess'
 alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r NoSpace="$Actius/NoSpace.zsh"
-alias -r LO='libreoffice24.8'
+alias -r LO='/usr/bin/libreoffice24.8'
 # }}}
 
 # Alias Backup {{{
@@ -68,6 +68,7 @@ alias -r MountZoteroBkp=" $Actius/MountFolder.zsh /home/mimosinnet/Dades/Backup/
 # Alias MoveLast {{{
 alias -r MoveLastBaixades="$Actius/MoveLast.zsh Baixades"
 alias -r MoveLastScreenShots="$Actius/MoveLast.zsh Dades/ScreenShots"
+alias -r MoveLastTemp="$Actius/MoveLast.zsh Baixades/Temp"
 # }}}
 
 # Alias Presentacions {{{ 
@@ -136,7 +137,6 @@ alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
 alias -r DF="$Actius/DF.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
-alias -r emerge='emerge --getbinpkgonly --usepkgonly'
 alias -r feh='feh --edit --auto-zoom --full-screen -d'
 alias -r ls='ls --color=auto'
 alias -r lisah='ls -lisah'
