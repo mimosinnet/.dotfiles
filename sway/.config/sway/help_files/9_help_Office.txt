@@ -1,0 +1,8 @@
+Key
+a help
+l libreoffice
+p mupdf
+q qpdfview
+t texmaker
+v Vivaldi + privoxy
+x xmind

@@ -1,0 +1,10 @@
+Shift+m MuttPatternModifier
+a help
+c correu 
+m MuttLineEditorKeys
+n MuttPatternModifier
+o offlineimap 
+s skypeforlinux
+t teams
+z zoom
+u exec gvim ~/Dades/Documents/Personal/Directori/UAB.txt

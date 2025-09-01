@@ -1,0 +1,10 @@
+a help
+c crqt - ebook reader
+f autoFirma
+g Gvim 
+n Neovim
+o Obsidian
+r rstudio
+x Xournalpp
+z Zotero Personal
+Z Zotero UAB
