@@ -1,0 +1,5 @@
+# run bin in repo
+function RunRepo() {
+  raku /home/mimosinnet/.config/Repos/bin/$1.raku	$2 $3 $4 $5 $6 $7 
+}
+

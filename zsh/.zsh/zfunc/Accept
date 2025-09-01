@@ -1,0 +1,12 @@
+# accept package in package_accept.keywords
+function Accept() {
+	unsetopt EQUALS
+	unsetopt NOMATCH 
+	a=""
+	for i
+	do
+		a="$a$i "
+	done
+	echo $a #>> /etc/portage/package.accept_keywords
+}
+
