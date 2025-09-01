@@ -1,28 +1,23 @@
-# i3 config file
-
 # Info {{{
-
-# Should you change your keyboard layout some time, delete
-# this file and re-run i3-config-wizard(1).
-
+# Should you change your keyboard layout some time, delete this file and re-run i3-config-wizard(1).
 # }}}
 
 # Automatically starting applications on startup {{{
-exec pulseaudio -D 
+exec pulseaudio -D
+# exec gentoo-pipewire-launcher
 exec parcellite
-exec blueman-applet
-# exec urxvtd -q -f -o
-# exec alacritty -e tmux
-exec xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output HDMI-A-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+# exec blueman-applet
+# exec google-chrome-stable -enable-features=UseOzonePlatform -ozone-platform=wayland --profile-directory=Default https://music.youtube.com/
 exec wpa_gui -t
 exec sleep 20s && google-chrome-stable --new-window --profile-directory="Default"
 exec sleep 30s && /usr/local/bin/Telegram/Telegram
 exec sleep 40s && pasystray
-exec sleep 70s && thunderbird-bin
-exec sleep 80s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"
-exec sleep 10m && vivaldi
-exec sleep 15m && /usr/bin/signal-desktop
-exec sleep 20m && alacritty -e nvim
+exec sleep 50s && thunderbird-bin
+exec sleep 60s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"
+exec sleep 70s && vivaldi
+exec sleep 80s && alacritty -e nvim
+exec sleep 10m && /usr/bin/signal-desktop
+exec sleep 11m && pavucontrol --class=pavucontrol
 # exec sleep 6m && discord
 # exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
 # exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
@@ -62,6 +57,16 @@ set $W10 "10: Zero"
 # set $down j
 # set $up k
 # set $right l
+# Your preferred terminal emulator
+set $term alacritty
+# }}}
+
+# input / output {{{1
+
+exec xrandr --output DisplayPort-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-1 --mode 1920x1080 --pos 3840x0 --rotate normal --output HDMI-A-0 --off --output HDMI-A-1 --mode 1920x1080 --pos 1920x0 --rotate normal
+
+# 1}}}
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -93,9 +98,6 @@ font pango:DejaVu Sans Mono 8
 title_align left 
 # }}}
 
-
-# }}}
-
 # 5. Configuring i3bar {{{1
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -112,17 +114,55 @@ bar {
 
 # 1}}}
 
+# Keyboard bindings {{{
+
+# Menu
+# dmenu (a program launcher)
+bindsym Menu       exec dmenu_run
+# j4-dmenu-desktop
+bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
+
+# Return
+bindsym $mod+Return 	  exec alacritty --working-directory /home/mimosinnet/Baixades 
+bindsym $mod+Shift+Return exec alacritty -e tmux
+
+# a: help
+bindsym $mod+a exec xmessage -nearmouse -file ~/.config/i3/help_files/x_keys_xmessage.txt
+
+# c: Reload restart
+# reload the configuration file
+bindsym $mod+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+c restart
+
+# p: alsamixer, pavucontrol
+bindsym $mod+p         exec urxvtc -e alsamixer
+bindsym $mod+Shift+p   exec pavucontrol
+bindsym $mod+Control+p exec pulseaudio -k
+
+# q: kill focused window
+bindsym $mod+q kill
+
+# Volume
+# bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+# bindsym XF86AudioMute        exec amixer set Master toggle
+
+bindsym $mod+u         exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym $mod+Shift+u   exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym $mod+Control+u exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
+
+# Print Screen {{{
+bindsym $mod+Print exec Print_Screen root
+bindsym --release $mod+Shift+Print exec Print_Screen area
+bindsym $mod+Control+Print exec Print_Screen delay
+bindsym $mod+Control+Print+Shift exec Print_Screen window
+# }}}
+
+
 # 6. List of commands {{{1
 
-# 6.2. Splitting containers {{{
-
-# "Split" the current focussed object horizontally or vertically
-# New window will open horizontally or vertically
-bindsym $mod+s split h
-bindsym $mod+Shift+s split v
-bindsym $mod+Control+s split toggle
-
-# }}}
 
 # 6.3 Manipulating layout {{{ 
 
@@ -140,6 +180,12 @@ bindsym $mod+Control+m fullscreen toggle
 bindsym $mod+L floating enable
 bindsym $mod+Shift+L floating disable
 bindsym $mod+Control+L floating toggle 
+
+# "Split" the current focussed object horizontally or vertically
+# New window will open horizontally or vertically
+bindsym $mod+s split h
+bindsym $mod+Shift+s split v
+bindsym $mod+Control+s split toggle
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -165,7 +211,7 @@ tiling_drag modifier titlebar
 # bindsym $mod+$right focus right
 # bindsym $mod+ntilde focus right
 
-# alternatively, you can use the cursor keys:
+# Or use $mod+[up|down|left|right]
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -175,9 +221,10 @@ bindsym $mod+Right focus right
 # bindsym $mod+Shift+j move left
 # bindsym $mod+Shift+k move down
 # bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+$right move right
 # bindsym $mod+Shift+ntilde move right
 
-# alternatively, you can use the cursor keys:
+# Ditto, with arrow keys
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -188,7 +235,6 @@ bindsym $mod+f         focus parent
 bindsym $mod+Shift+f   focus child
 # Swap focus between the tiling area and the floating area
 bindsym $mod+Control+f focus mode_toggle
-
 
 # }}}
 
@@ -213,14 +259,9 @@ default_floating_border pixel
 
 # }}}
 
-# 6.20. Reloading/Restarting/Exiting {{{
+# 6.20. Exiting {{{
 
-# reload the configuration file
-bindsym $mod+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+c restart
 # exit i3 (logs you out of your X session) and do not give focus to the window
-# no_focus [class="Quit.raku"]
 bindsym $mod+Shift+q exec Quit
 # bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'  'i3-msg exit'"
 
@@ -258,7 +299,7 @@ bindsym $mod+button5 workspace 2
 
 # }}}
 
-# Moving windows to workspaces {{{
+# Move focused container to workspace {{{
 bindsym Control+$1  move container to workspace  $W1
 bindsym Control+$2  move container to workspace  $W2
 bindsym Control+$3  move container to workspace  $W3
@@ -271,7 +312,7 @@ bindsym Control+$9  move container to workspace  $W9
 bindsym Control+$10 move container to workspace $W10
 # }}}
 
-# Moving windows to workspaces and move to workspace {{{
+# Moving focused container to workspaces and move to workspace {{{
 bindsym Control+$mod+$1  move container to workspace  $W1; workspace  $W1
 bindsym Control+$mod+$2  move container to workspace  $W2; workspace  $W2
 bindsym Control+$mod+$3  move container to workspace  $W3; workspace  $W3
@@ -308,16 +349,16 @@ for_window [class="pavumeter"] floating enable
 # 4.13. Automatically putting clients on specific workspaces {{{
 assign [class="thunderbird"] $W2
 for_window [title="^Calendari"] move to workspace $W2
-for_window [class="Signal"] move to workspace $W3
+# for_window [class="Signal"] move to workspace $W3
+assign [class="Signal"] $W3
+assign [class="obsidian"] $W3
 assign [class="Firefox"] $W4
 # assign [title="^Alacritty$"] $W5
 assign [class="pavucontrol"] $W6
-for_window [title="^Carteras"] move to workspace $W6
+assign [class="Vivaldi-stable"] $W6
 assign [class="google-chrome" window_role="browser"] $W7
 assign [class="^Telegram"] $W8
-# assign [class="Signal"] $W8
-assign [class="libreoffice" title="Sin título"] $W9
-assign [class="obsidian"] $W10
+assign [class="libreoffice" title="Sense títol"] $W9
 # }}}
 
 # 4.15. Automatically putting workspaces on specific screens {{{
@@ -354,53 +395,9 @@ workspace $W10 output HDMI-A-1
 
 # 1}}}
 
-# Keybindings and Modes (Workspaces) {{{1
+# Modes (Workspaces) {{{1
 
-# Keyboard bindings {{{
-
-# Menu
-# dmenu (a program launcher)
-bindsym Menu       exec dmenu_run
-# j4-dmenu-desktop
-bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
-
-# Return
-# bindsym $mod+Return 		  exec urxvtc
-# bindsym $mod+Shift+Return exec urxvtd -f
-bindsym $mod+Return 	  exec alacritty --working-directory /home/mimosinnet/Baixades 
-bindsym $mod+Shift+Return exec alacritty -e tmux
-
-# a: help
-bindsym $mod+a exec xmessage -nearmouse -file ~/.config/i3/help_files/x_keys_xmessage.txt
-
-
-# p: alsamixer, pavucontrol
-bindsym $mod+p         exec urxvtc -e alsamixer
-bindsym $mod+Shift+p   exec pavucontrol
-bindsym $mod+Control+p exec pulseaudio -k
-
-# q: kill focused window
-bindsym $mod+q kill
-
-# Volume
-# bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-# bindsym XF86AudioLowerVolume exec amixer set Master 5%-
-# bindsym XF86AudioMute        exec amixer set Master toggle
-
-bindsym $mod+u         exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
-bindsym $mod+Shift+u   exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+Control+u exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-
-# Print Screen {{{
-bindsym $mod+Print exec Print_Screen root
-bindsym --release $mod+Shift+Print exec Print_Screen area
-bindsym $mod+Control+Print exec Print_Screen delay
-bindsym $mod+Control+Print+Shift exec Print_Screen window
-# }}}
-
-# }}}
-
-# Mode resize (resize containers/windows) {{{
+# Resizing containers {{{
 # resize window (you can also use the mouse for that)
 mode "resize" {
 
@@ -441,7 +438,6 @@ bindsym $mod+r mode "resize"
 # 1 Files {{{
 mode "Files" {
 		bindsym a exec Gxmessage.zsh.zsh ~/.config/i3/help_files/1_help_Files.txt
-		bindsym m exec urxvtc -e /usr/local/bin/Munta.sh usb
 		bindsym p exec pcmanfm
     bindsym r exec urxvtc -e ranger
     bindsym s exec spacefm
@@ -553,7 +549,6 @@ mode "People" {
 	bindsym i exec urxvtc -e irssi
 	bindsym r exec urxvtc -e rtorrent
 	bindsym t exec /usr/local/bin/Telegram/Telegram
-  # bindsym shift+t exec su - nisomim -c '/home/nisomim/bin/Telegram/Telegram'
   bindsym s exec /usr/bin/signal-desktop
 
 	# back to normal: Enter or Escape
@@ -562,11 +557,12 @@ mode "People" {
 }
 # }}}
 
-# 9 Office {{{
+# 9 Office {{{1
 mode "Office" {
 		bindsym a exec Gxmessage.zsh -nearmouse -file ~/.config/i3/help_files/9_help_Office.txt
     bindsym g exec gummi
-		bindsym l exec libreoffice24.8
+# 		bindsym l exec /usr/local/bin/LibreOffice-fresh.full-x86_64.AppImage
+		bindsym l exec flatpak run org.libreoffice.LibreOffice
     bindsym p exec mupdf
     bindsym q exec qpdfview
     bindsym t exec texmaker
@@ -577,8 +573,8 @@ mode "Office" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-# }}}
-
 # 1}}}
+
+# 2}}}
 
 # vim:filetype=i3config
