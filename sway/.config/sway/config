@@ -4,38 +4,6 @@
 # - Eliminar parcellite
 # }}}
 
-# Automatically starting applications on startup {{{
-# https://dev1galaxy.org/viewtopic.php?id=6452
-exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-# exec pulseaudio -D 
-exec gentoo-pipewire-launcher restart &
-# https://github.com/chmouel/clipman/?tab=readme-ov-file
-exec wl-paste -t text --watch clipman store
-# exec blueman-applet
-# exec google-chrome-stable -enable-features=UseOzonePlatform -ozone-platform=wayland --profile-directory=Default https://music.youtube.com/
-exec wpa_gui -t
-exec sleep 20s && google-chrome-stable --new-window --profile-directory="Default"
-exec sleep 30s && /usr/local/bin/Telegram/Telegram
-exec sleep 40s && pasystray
-exec sleep 50s && thunderbird-bin
-exec sleep 60s && google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"
-exec sleep 70s && vivaldi
-exec sleep 80s && alacritty -e nvim
-exec sleep 10m && qpwgraph
-exec sleep 11m && /usr/bin/signal-desktop
-exec sleep 12m && pavucontrol --class=pavucontrol
-# exec sleep 6m && discord
-# exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
-# exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
-# exec sleep 7m && google-chrome-stable --new-window "https://www.google.com/finance/"
-
-# exec sleep 7m && flatpak run md.obsidian.Obsidian
-# Velles:
-# exec sleep  4m && pavucontrol --class=pavucontrol
-# exec su - nisomim    -c '/home/nisomim/bin/Telegram/Telegram'
-# exec su - nosimim -c /usr/local/bin/Telegram_Nisomim/Telegram
-# }}}
-
 # set variables {{{
 set $mod Mod4
 set  $1 KP_End
@@ -67,6 +35,40 @@ set $W10 "10: Zero"
 set $term alacritty
 # }}}
 
+# Automatically starting applications on startup {{{
+# https://dev1galaxy.org/viewtopic.php?id=6452
+exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec gentoo-pipewire-launcher restart &
+# https://github.com/chmouel/clipman/?tab=readme-ov-file
+# exec wl-paste -t text --watch clipman store
+# https://github.com/sentriz/cliphist
+exec wl-paste --watch cliphist store
+# exec blueman-applet
+# exec google-chrome-stable -enable-features=UseOzonePlatform -ozone-platform=wayland --profile-directory=Default https://music.youtube.com/
+exec wpa_gui -t
+workspace '7: Chrome'; exec google-chrome-stable --new-window --profile-directory="Default"
+exec sleep 30s && /usr/local/bin/Telegram/Telegram
+# exec sleep 40s && pavucontrol --class=pavucontrol
+exec sleep 40s && pavucontrol 
+# exec sleep 40s && pasystray
+exec sleep 50s && thunderbird-bin
+exec sleep 70s && vivaldi
+exec sleep 80s && $term -e nvim
+exec sleep 90s && /home/mimosinnet/.dotfiles/sway/.config/sway/bin/Cal.zsh
+exec sleep 10m && qpwgraph
+exec sleep 11m && /usr/bin/signal-desktop
+# exec sleep 6m && discord
+# exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
+# exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
+# exec sleep 7m && google-chrome-stable --new-window "https://www.google.com/finance/"
+
+# exec sleep 7m && flatpak run md.obsidian.Obsidian
+# Velles:
+# exec sleep  4m && pavucontrol --class=pavucontrol
+# exec su - nisomim    -c '/home/nisomim/bin/Telegram/Telegram'
+# exec su - nosimim -c /usr/local/bin/Telegram_Nisomim/Telegram
+# }}}
+
 # input / output {{{1
 
 # input {{{2
@@ -76,7 +78,7 @@ input * {
   xkb_layout "es"
   xkb_variant "cat"
   xkb_options "compose:rwin,terminate:ctrl_alt_bksp"
-	xkb_model 	"pc104"
+  xkb_model 	"pc104"
 }
 
 input "2362:9488:PixArt_USB_Optical_Mouse"  {
@@ -124,15 +126,17 @@ bindsym Menu       exec dmenu_run
 bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
 
 # Return
-bindsym $mod+Return 	    exec alacritty --working-directory /home/mimosinnet/Baixades 
-bindsym $mod+Shift+Return exec alacritty -e tmux
+bindsym $mod+Return       exec $term --working-directory /home/mimosinnet/Baixades -e tmux
+bindsym $mod+Shift+Return exec $term --working-directory /home/mimosinnet/Baixades 
 
 # A: help
 bindsym $mod+a exec Gxmessage.zsh ~/.config/i3/help_files/x_keys_xmessage.txt
 
-# C: Clipman + Configuration reload restart
+# C: cliplist + Configuration reload restart
 # clipman, https://github.com/chmouel/clipman/?tab=readme-ov-file
-bindsym $mod+c clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0"
+# bindsym $mod+c clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0"
+# cliphist, https://github.com/sentriz/cliphist
+bindsym $mod+c exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -155,7 +159,7 @@ bindsym $mod+Shift+m fullscreen disable
 bindsym $mod+Control+m fullscreen toggle
 
 # P: pipewire, Pavcontrol, alsamixer
-bindsym $mod+p         exec alacritty -e alsamixer
+bindsym $mod+p         exec $term -e alsamixer
 bindsym $mod+Shift+p   exec pavucontrol
 
 # Q: Quit (kill) focused window, Quit sway
@@ -170,12 +174,12 @@ bindsym $mod+s split h
 bindsym $mod+shift+s split v
 bindsym $mod+Control+s split toggle
 
-# V: moVe containers/workspaces to RandR outputs {{{
+# V: moVe containers/workspaces to RandR outputs 
 bindsym $mod+v move container to output right
 bindsym $mod+Shift+v move container to output left
 bindsym $mod+Ctrl+v move workspace to output right
 bindsym $mod+Shift+Ctrl+v move workspace to output left
-# }}}
+# 
 
 # Y: laYout
 bindsym $mod+y layout stacking
@@ -237,7 +241,7 @@ title_align left
 # i3bar Start i3bar to display a workspace bar 
 bar {
  position top
-   status_command i3blocks -c ~/.config/i3/i3blocks.conf
+   status_command i3blocks -c ~/.config/sway/i3blocks.conf
  colors {
   # yellow
  	separator  #FFF000
@@ -288,6 +292,9 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag enable
 
+# default layout stacking|tabbed
+workspace_layout tabbed
+
 # Focusing/Moving containers
 
 # Move your focus around
@@ -317,7 +324,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-
 # }}}
 
 # 6.16. Window title icon {{{
@@ -346,7 +352,7 @@ bindsym $mod+minus scratchpad show
 
 # 1}}}
 
-# Workspaces {{{1
+# Windows and Workspaces {{{1
 
 # switch to workspace {{{
 bindsym  $1 workspace  $W1
@@ -391,35 +397,22 @@ bindsym Control+$mod+$9  move container to workspace  $W9; workspace  $W9
 bindsym Control+$mod+$10 move container to workspace $W10; workspace $W10
 # }}}
 
-# default applications on workspace {{{
-bindsym Shift+$1  workspace  $W1; mode "Files"
-bindsym Shift+$2  workspace  $W2; mode "Mail"
-bindsym Shift+$3  workspace  $W3; mode "Utils"
-bindsym Shift+$4  workspace  $W4; mode "Browsers"
-bindsym Shift+$5  workspace  $W5; mode "System"
-bindsym Shift+$6  workspace  $W6; mode "Oci"
-bindsym Shift+$7  workspace  $W7; exec google-chrome-stable
-bindsym Shift+$8  workspace  $W8; mode "People"
-bindsym Shift+$9  workspace  $W9; mode "Office"
-# }}}
-
 # Get clients on specific workspaces {{{
 assign [app_id="thunderbird"] $W2
-for_window [app_id="google-chrome" title="^Calendari"] move to workspace $W2
-# for_window [class="Signal"] move to workspace $W3
+# for_window [app_id="google-chrome" title="^Calendari"] move to workspace $W2
 assign [app_id="signal"] $W3
 assign [class="obsidian"] $W3
 assign [class="Firefox"] $W4
 # assign [title="^Alacritty$"] $W5
-assign [class="pavucontrol"] $W6
+assign [app_id="org.pulseaudio.pavucontrol"] $W6
 assign [app_id="org.rncbc.qpwgraph"] $W6
 assign [class="Vivaldi-stable"] $W9
-assign [app_id="google-chrome"] $W7
+# assign [app_id="google-chrome"] $W7
 assign [app_id="org.telegram.desktop"] $W8
 assign [class="libreoffice" title="Sense títol"] $W9
 # }}}
 
-# Set workspaces specific screens {{{
+# Set workspaces on specific screens {{{
 
 # Cols
 # 1 2 3
@@ -447,7 +440,7 @@ workspace $W3 output DP-2
 workspace $W10 output HDMI-A-2
 # }}}
 
-# floating windows {{{
+# Floating windows {{{
 floating_maximum_size 700 x 700
 for_window [app_id="gxmessage"]                       floating enable
 for_window [app_id="org.pulseaudio.pavucontrol"]      floating enable
@@ -456,6 +449,20 @@ for_window [app_id="Zotero" title="Zotero - Choose User Profile"] floating enabl
 for_window [class="Pavumeter"]                        floating enable
 for_window [class="Quit"]                             floating enable
 for_window [class="Xmessage"]                         floating enable
+
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_type = "dialog"] floating enable
+for_window [window_role = "task_dialog"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [app_id = "floating"] floating enable
+for_window [app_id = "floating_update"] floating enable, resize set width 1000px height 600px
+for_window [class = "(?i)pinentry"] floating enable
+
+for_window [title = "About Mozilla Firefox"] floating enable
+for_window [window_role = "About"] floating enable
+
 # }}}
 
 # 4.23. Automatic back-and-forth {{{
@@ -466,7 +473,20 @@ for_window [class="Xmessage"]                         floating enable
 
 # Modes {{{1
 
-# Resizing containers {{{
+# bindsym modes {{{
+bindsym $mod+r mode "resize"
+bindsym Shift+$1  workspace  $W1; mode "Files"
+bindsym Shift+$2  workspace  $W2; mode "Mail"
+bindsym Shift+$3  workspace  $W3; mode "Utils"
+bindsym Shift+$4  workspace  $W4; mode "Browsers"
+bindsym Shift+$5  workspace  $W5; mode "System"
+bindsym Shift+$6  workspace  $W6; mode "Oci"
+bindsym Shift+$7  exec google-chrome-stable --new-window --profile-directory="Default"
+bindsym Shift+$8  workspace  $W8; mode "People"
+bindsym Shift+$9  workspace  $W9; mode "Office"
+# }}}
+
+# mode resize (resize containers) {{{2
 # resize window (you can also use the mouse for that)
 mode "resize" {
 
@@ -481,7 +501,7 @@ mode "resize" {
     bindsym j resize shrink width 10px
     bindsym k resize grow height 10px
     bindsym l resize shrink height 10px
-    bindsym semicolon resize grow width 10px
+    bindsym ntilde resize grow width 10px
 
     # same bindings, with arrow keys
     bindsym Left resize shrink width 10px
@@ -500,13 +520,12 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
-# }}}
+# 2}}}
 
 # 1 Files {{{
 mode "Files" {
-		bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/1_help_Files.txt
-		bindsym p exec pcmanfm
+	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/1_help_Files.txt
+	bindsym p exec pcmanfm
     bindsym r exec urxvtc -e ranger
     bindsym s exec spacefm
 		bindsym v exec urxvtc -e vifm ~/ ~/
@@ -521,16 +540,14 @@ mode "Files" {
 # 2 Mail {{{
 mode "Mail" {
 	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/2_help_Mail.txt
-	bindsym c exec urxvtc -j -ss -e perl6 /home/mimosinnet/.config/Repos/bin/Correu.raku
 	bindsym m exec xmessage -nearmouse -file ~/.config/sway/help_files/2_MuttLineEditorKeys.txt
 	bindsym n exec xmessage -nearmouse -file ~/.config/sway/help_files/2_MuttPatternModifier.txt
-	bindsym o exec urxvtc -j -ss -e offlineimap 
-  bindsym s exec skypeforlinux
-  bindsym t exec thunderbird-bin
+    bindsym s exec skypeforlinux
+    bindsym t exec thunderbird-bin
 	bindsym u exec gvim ~/Dades/Documents/Personal/Directori/UAB.txt
-  bindsym z exec zoom
+    bindsym z exec zoom
 	bindsym Shift+m exec xmessage -nearmouse -file ~/.config/sway/help_files/MuttPatternModifier.txt
-  bindsym Shift+t exec teams
+    bindsym Shift+t exec teams
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
@@ -545,7 +562,7 @@ mode "Utils" {
     bindsym c exec crqt
     bindsym f exec autofirma
     bindsym g exec gvim
-    bindsym n exec exec alacritty -e nvim
+    bindsym n exec exec $term -e nvim
     bindsym o exec obsidian
     bindsym r exec rstudio
     bindsym x exec xournalpp
@@ -561,7 +578,7 @@ mode "Utils" {
 # 4 Browsers {{{
 mode "Browsers" {
 	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/4_help_Browsers.txt
-	bindsym e exec urxvtc -e elinks http://www.google.es 
+	bindsym e exec $term -e lynx http://www.google.es 
 	bindsym f exec firefox-bin
 
 	# back to normal: Enter or Escape
@@ -576,12 +593,12 @@ mode "System" {
 	bindsym a exec Gxmessage.zsh ~/.config/i3/help_files/5_help_System.txt
 	bindsym Shift+e exec setxkbmap -model pc104 -layout es 
 	bindsym b exec bleachbit
-	bindsym e exec alacritty -geometry 128x42 -e bash -c "su -c elogv" 
+	bindsym e exec $term -geometry 128x42 -e bash -c "su -c elogv" 
 	bindsym g exec glade
-	bindsym l exec alacritty -e vim ~/0Enllaços/Linux/linux.txt 
+	bindsym l exec $term -e vim ~/0Enllaços/Linux/linux.txt 
 	bindsym m exec xmodmap -e "pointer = 1 2 3 4 5"
-  bindsym n exec alacritty -e ncdu -x
-	bindsym p exec alacritty -e /home/mimosinnet/.zsh/ZScripts/Presentacions.zsh
+    bindsym n exec $term -e ncdu -x
+	bindsym p exec $term -e /home/mimosinnet/.zsh/ZScripts/Presentacions.zsh
 	bindsym x exec xterm 
 
 	# back to normal: Enter or Escape
@@ -597,12 +614,13 @@ mode "Oci" {
 	bindsym g exec gimp
 	bindsym h exec ghb
 	bindsym i exec inkscape
-	bindsym p exec pavucontrol
+    bindsym n exec $term -e newsboat
+	bindsym p exec pavucontrol --class=pavucontrol
 	bindsym q exec qjackctl
 	# bindsym s exec shotcut
 	bindsym s exec flatpak run org.shotcut.Shotcut
-  bindsym t exec subtitleeditor
-  bindsym u exec audacity
+    bindsym t exec subtitleeditor
+    bindsym u exec audacity
 	bindsym v exec vlc
   bindsym w exec flatpak run it.mijorus.whisper
 
@@ -614,11 +632,9 @@ mode "Oci" {
 
 # 8 People {{{2
 mode "People" {
-	bindsym h exec xmessage -nearmouse -file ~/.config/sway/help_files/8_help_People.txt
-	bindsym i exec urxvtc -e irssi
-	bindsym r exec urxvtc -e rtorrent
-  bindsym s exec /usr/bin/signal-desktop
-  bindsym t exec /usr/local/bin/Telegram/Telegram
+	bindsym a exec Gxmessage -nearmouse -file ~/.config/sway/help_files/8_help_People.txt
+    bindsym s exec /usr/bin/signal-desktop
+    bindsym t exec /usr/local/bin/Telegram/Telegram
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
@@ -628,21 +644,23 @@ mode "People" {
 
 # 9 Office {{{2
 mode "Office" {
-		bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/9_help_Office.txt
-# 		bindsym l exec /usr/local/bin/LibreOffice-fresh.full-x86_64.AppImage
-		bindsym l exec flatpak run org.libreoffice.LibreOffice
+	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/9_help_Office.txt
+    # bindsym l exec /usr/local/bin/LibreOffice-fresh.full-x86_64.AppImage
+	bindsym l exec flatpak run org.libreoffice.LibreOffice
+    # bindsym l exec libreoffice-bin
     bindsym p exec mupdf
     bindsym q exec qpdfview
     bindsym t exec texmaker
     bindsym v exec vivaldi --proxy-server="localhost:8118"
-		bindsym x exec xmind
+    bindsym x exec xmind
+	bindsym z exec zathura
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
-# }}}
+# 2}}}
 
 # 1}}}
 
-# vim:filetype=swayconfig
+# vim: filetype=swayconfig tabstop=4 expandtab
