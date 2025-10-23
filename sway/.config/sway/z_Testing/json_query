@@ -1,0 +1,11 @@
+# recurse(.nodes[]) | if .type == "con" then {id: .id, type: .type, name: .name, pid: .pid, app_id: .app_id} else {} end
+
+# recurse(.nodes[]) | select(  .app_id == "google-chrome" ) |  select( .name |  contains("Calendari") ) | .id
+
+recurse(.nodes[]) | select(  .app_id == "google-chrome" and ( .name |  startswith("Calendari"))  ) | .id
+
+
+
+# recurse(.nodes[]) | {id: .id, type: .type, name: .name, pid: .pid, app_id: .app_id}
+# recurse(.nodes[]) | {id: .id, type: .type, name: .name}
+

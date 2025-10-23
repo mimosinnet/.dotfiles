@@ -1,5 +1,0 @@
-# Crea enllaç amb arxiu
-function Link() {
-	ln /home/mimosinnet/Dades/Webs/pres_clase/public/media/43/P/$1 .
-}
-

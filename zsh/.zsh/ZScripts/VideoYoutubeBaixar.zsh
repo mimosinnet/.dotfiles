@@ -34,6 +34,50 @@ else
 fi
 # }}}
 
+
+# _ffmpeg: incrustar subtitols {{{
+function _ffmpeg() {
+  local sub=$1
+  local file=$(ls video.(mp4|webm|mkv))
+  local ext=${file:e}
+  # print "\n ffmpeg -i $file -vf subtitles=$sub out_video.$ext"
+  ffmpeg -i $file -vf subtitles=$sub out_video.$ext
+}
+# }}}
+
+# _subtitol: escull subtitol {{{
+function _subtitol() {
+  print "Hi ha ${#sub} subtítols: \n"
+  local x=1
+  for i in $sub
+  do
+    print "$x - $i"
+    (( x++ ))
+  done
+  while [[ $nsub -lt 2 || $nsub -gt ${#sub} ]]
+  do
+    read -k "nsub?Quin subtítol vols? (0-${#sub}) "
+    echo "\n"
+  done
+}
+# }}}
+
+# _incrustar: incrustar Subtitols {{{
+function _incrustar() {
+   sub=($(ls video.*.vtt))
+   # Acció en funció del nombre de subtítols
+   case ${#sub} in
+     0) print "No hi ha arxiu de subtítols" ;;
+     1) _ffmpeg $sub[1]                     ;;
+     *) 
+        nsub=0
+        _subtitol
+        _ffmpeg $sub[$nsub]
+        ;;
+   esac
+}
+# }}}
+
 # Download {{{
 function baixar() {
     print "opcions:
@@ -87,11 +131,7 @@ function baixar() {
         echo "\n"
         if [[ $incrustar == "y" ]]
         then
-          file=$(ls video.(mp4|webm|mkv))
-          sub=$(ls video.*.vtt)
-          ext=${file:e}
-          # print "\n ffmpeg -i $file -vf subtitles=$sub out_video.$ext"
-          ffmpeg -i $file -vf subtitles=$sub out_video.$ext
+          _incrustar
         fi
       done
     fi

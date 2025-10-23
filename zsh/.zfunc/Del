@@ -1,5 +1,0 @@
-# Move to /mnt/Segur/Remove
-function del {
-  readonly file=${1:?"Falta el nom de l'arxiu/directori."}
-  mv $1 /mnt/Segur/Remove
-}

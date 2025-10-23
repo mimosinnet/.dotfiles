@@ -1,9 +1,9 @@
-Shift+e es keyboard layout
-a help
 b bleachbit - remove files from system
 c console
 e elog viewer
+E es keyboard layout
 g glade
+h Help
 l linux help
 m mouse normal
 n ncdu - disk space

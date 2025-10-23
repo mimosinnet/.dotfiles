@@ -15,7 +15,9 @@ end
 -- Image / background {{{
 
 function M.image()
-	local A = "!"
+	local A = "![["
+	local B = "]]"
+	parameters.two(A, B)
 end
 
 -- background PB(opacity) {{{
@@ -29,6 +31,28 @@ function M.background(opacity)
 end
 -- }}}
 
+-- }}}
+
+-- Video {{{
+function M.video()
+	local A = '<video data-autoplay controls><source src="'
+	local B = "/media/V/"
+	local C = '" type="video/mp4"></video>'
+	local D = ""
+	local E = ""
+	parameters.five(A, B, C, D, E)
+end
+-- }}}
+
+-- Sound {{{
+function M.sound()
+	local A = '<audio autoplay><source src="'
+	local B = "/media/S/"
+	local C = '" type="audio/mpeg"></audio>'
+	local D = ""
+	local E = ""
+	parameters.five(A, B, C, D, E)
+end
 -- }}}
 
 -- Comments Comment / Before / After {{{

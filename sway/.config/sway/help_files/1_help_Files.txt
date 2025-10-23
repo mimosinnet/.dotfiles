@@ -1,5 +1,4 @@
-keys
-a	Help
+h Help
 m Munta usb
 p Pcmanfm
 r Ranger

@@ -1,8 +1,6 @@
-a help
 c crqt - ebook reader
 f autoFirma
-g Gvim 
-n Neovim
+h Help
 o Obsidian
 r rstudio
 x Xournalpp

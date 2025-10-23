@@ -1,0 +1,5 @@
+A alsamixer
+g Gvim 
+h Help
+n Neovim
+p pavucontrol

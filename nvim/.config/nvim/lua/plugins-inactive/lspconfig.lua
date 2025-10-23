@@ -3,7 +3,6 @@ local diagnostic_signs = require("util.icons").diagnostic_signs
 local typescript_organise_imports = require("util.lsp").typescript_organise_imports
 
 local config = function()
-	require("neoconf").setup({})
 	local cmp_nvim_lsp = require("cmp_nvim_lsp")
 	local lspconfig = require("lspconfig")
 	local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -26,8 +25,8 @@ local config = function()
 				workspace = {
 					-- make language server aware of runtime files
 					library = {
-						[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						[vim.fn.stdpath("config") .. "/lua"] = true,
+						vim.fn.expand("$VIMRUNTIME/lua"),
+						vim.fn.stdpath("config") .. "/lua",
 					},
 				},
 			},
@@ -59,7 +58,7 @@ local config = function()
 	})
 
 	-- typescript
-	lspconfig.tsserver.setup({
+	lspconfig.ts_ls.setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 		filetypes = {
@@ -134,12 +133,9 @@ local config = function()
 	local black = require("efmls-configs.formatters.black")
 	local eslint = require("efmls-configs.linters.eslint")
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
-	local fixjson = require("efmls-configs.formatters.fixjson")
 	local shellcheck = require("efmls-configs.linters.shellcheck")
 	local shfmt = require("efmls-configs.formatters.shfmt")
-	local hadolint = require("efmls-configs.linters.hadolint")
 	local solhint = require("efmls-configs.linters.solhint")
-	local cpplint = require("efmls-configs.linters.cpplint")
 	local clangformat = require("efmls-configs.formatters.clang_format")
 
 	-- configure efm server
@@ -177,8 +173,8 @@ local config = function()
 				lua = { luacheck, stylua },
 				python = { flake8, black },
 				typescript = { eslint, prettier_d },
-				json = { eslint, fixjson },
-				jsonc = { eslint, fixjson },
+				json = { eslint },
+				jsonc = { eslint },
 				sh = { shellcheck, shfmt },
 				javascript = { eslint, prettier_d },
 				javascriptreact = { eslint, prettier_d },
@@ -186,12 +182,12 @@ local config = function()
 				svelte = { eslint, prettier_d },
 				vue = { eslint, prettier_d },
 				markdown = { prettier_d },
-				docker = { hadolint, prettier_d },
+				docker = { prettier_d },
 				solidity = { solhint },
 				html = { prettier_d },
 				css = { prettier_d },
-				c = { clangformat, cpplint },
-				cpp = { clangformat, cpplint },
+				c = { clangformat },
+				cpp = { clangformat },
 			},
 		},
 	})

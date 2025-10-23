@@ -3,16 +3,23 @@ HISTFILE=~/.cache/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 Zsh=/home/mimosinnet/.zsh
+Zfunc=$Zsh/zfunc
 Actius=$Zsh/ZScripts
+# export PATH="$HOME/node_modules/.bin:$PATH"
 # }}}
 
 # Options {{{
 # The meaning of these options can be found in man page of `zshoptions`.
-setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
-setopt EXTENDED_HISTORY  # record command start time
-# història: elimina duplicats, ignora els que comencen amb espai
-setopt hist_ignore_all_dups hist_ignore_space
+
+# History Options
+  # extended_history: record command start time
+  # hist_ignore_all_dups: do not put duplicated command into history list
+  # hist_ignore_space: commands that start with space
+  # hist_reduce_blanks: remove unnecessary blanks
+  # hist_save_no_dups: do not save duplicated command
+  # inc_append_history_time: append command to history file immediately after execution
+setopt extended_history hist_ignore_all_dups  hist_ignore_space hist_reduce_blanks hist_save_no_dups inc_append_history_time 
+
 # no fa falta cd
 setopt autocd
 # regex en operacions amb arxius: cp ^*.(tar|bz2|gz).
@@ -134,14 +141,16 @@ zstyle ':completion:*:*:kill:*:processes'     list-colors "=(#b) #([0-9]#)*=36=3
 # Funcions {{{
 
 # Activar funcions:
-source ~/.zfunc/Mask
-source ~/.zfunc/Puja
-source ~/.zfunc/RunRepo
-source ~/.zfunc/adreça
-source ~/.zfunc/auto_ls
-source ~/.zfunc/marks
-# source ~/.zfunc/prompt
-source ~/.zfunc/Interface.zsh
+# source $Zfunc/prompt
+source $Zfunc/History.zsh
+source $Zfunc/Interface.zsh
+source $Zfunc/LibreOffice.zsh
+source $Zfunc/Mask
+source $Zfunc/Puja
+source $Zfunc/RunRepo
+source $Zfunc/adreça
+source $Zfunc/auto_ls
+source $Zfunc/marks
 # }}}
 
 # keybindings {{{

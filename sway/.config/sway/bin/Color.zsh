@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+SM="swaymsg"
+
+black="#000000"
+G1="#001000"
+G2="#002000"
+G3="#003000"
+G4="#004000"
+G5="#005000"
+G6="#006000"
+G7="#007000"
+G8="#008000"
+G9="#009000"
+GA="#00a000"
+GB="#00b000"
+GC="#00c000"
+GD="#00d000"
+GE="#00e000"
+GF="#00ff00"
+white="#ffffff"
+red="#ff0000"
+yel="#ffff00"
+
+# class                         border  backgr  text    indic   child_border
+$SM "client.focused             $G5     $G5     $white  $yel    $G4"
+$SM "client.focused_inactive    $G2     $G3     $white  $yel    $G4"
+$SM "client.focused_tab_title   $red    $yel    $red"
+$SM "client.unfocused           $G7     $G1     $GF     $red    $G4"
+$SM "client.urgent              $G1     $GF     $G1     $red    $G4"

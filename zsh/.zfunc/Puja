@@ -1,4 +1,0 @@
-# Puja arxiu a servidor
-function Puja() {
-  scp -r $1 mimosinnet@$2:/home/mimosinnet/$1
-}

@@ -1,4 +1,0 @@
-# https://bbs.archlinux.org/viewtopic.php?id=196525
-function test-microphone() {
-	arecord -vv -fdat borrem.wav
-}

@@ -7,10 +7,15 @@ alias -r Files="$Actius/Files.zsh"
 # Alias Aplicacions {{{
 # alias -r lynx-proxy='lynx -cfg=~/.config/lynx/lynx-proxy.cfg http://config.privoxy.org/'
 alias -r git='LC_ALL=en_US.UTF-8 git'
+alias -r Gxmessage='gxmessage -bg black -fg lightgreen -center -timeout 8 -title Ajuda -borderless -file'
 alias -r Lichess='/usr/local/bin/LDA/Lichess'
+# alias -r LO='/usr/bin/libreoffice-bin'
+alias -r LO='flatpak run org.libreoffice.LibreOffice'
 alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 alias -r NoSpace="$Actius/NoSpace.zsh"
-alias -r LO='/usr/bin/libreoffice24.8'
+# https://superuser.com/questions/232457/zsh-output-whole-history
+alias fzf="fzf --preview-window top:30 --preview '([[ -f {} ]] && (bat --style=numbers --color=always\
+     {} || bat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
 # }}}
 
 # Alias Backup {{{
@@ -134,6 +139,7 @@ alias -r Borrem="$Actius/Borrem.zsh"
 alias -r Cating='cat /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r Colors="print 'PrintColors to print colors' &&  source /home/mimosinnet/.zfunc/PrintColors.zsh"
 alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
+alias -r Date="$Actius/Date.zsh"
 alias -r DF="$Actius/DF.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
@@ -145,11 +151,14 @@ alias -r lsg='ls -lisah | grep'
 alias -r lsm='cat ~/.mutt/data/aliases | grep'
 alias -r ltr='ls -ltr'
 alias -r mv='mv -i'
+alias -r Mkdir="source $Actius/Mkdir.zsh"
 alias -r obre='xdg-open'
 alias -r OneDrive="$Actius/Rclone.zsh OneDrive"
 alias -r Gdrive="$Actius/Rclone.zsh Gdrive"
+alias -r Teams_TFG="$Actius/Rclone.zsh Teams_TFG"
 alias -r ping='ping -c 3'
-alias -r Print_Screen="$Actius/Print_Screen.zsh"
+# alias -r Print_Screen="$Actius/Print_Screen.zsh"
+alias -r Print_Screen="$Actius/Print_Screen_Wayland.zsh"
 alias -r rl='readlink -f'
 alias -r tree='tree -AC'
 alias -r Sis="source $Actius/Sistema.zsh" 
@@ -165,11 +174,12 @@ alias -r Iotop='sysctl kernel.task_delayacct=1 && iotop; sysctl kernel.task_dela
 # }}}
 
 # Alias Wake {{{
-alias -r PowerOffMimoMedia="$Actius/Wake.zsh poweroff mimomedia10 none"
 alias -r PowerOffFx="$Actius/Wake.zsh poweroff fx none"
+alias -r PowerOffMimoMedia="$Actius/Wake.zsh poweroff mimomedia10 none"
 alias -r PowerOffMimoServer="$Actius/Wake.zsh poweroff mimoserver /etc/portage"
-alias -r PowerOffPhenom="$Actius/Wake.zsh poweroff phenom none"
 alias -r PowerOffMimory="$Actius/Wake.zsh poweroff mimory /home/mimosinnet/Dades/Documents"
+alias -r PowerOffNisomim="$Actius/Wake.zsh poweroff nisomim none"
+alias -r PowerOffPhenom="$Actius/Wake.zsh poweroff phenom none"
 alias -r WakeMimoMedia="$Actius/Wake.zsh wake mimomedia10"
 alias -r WakeFx="$Actius/Wake.zsh wake fx" 
 alias -r WakeMimoServer="$Actius/Wake.zsh wake mimoserver"

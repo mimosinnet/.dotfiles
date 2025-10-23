@@ -1,14 +1,14 @@
 # _mount_portage_check
 # check if portage shares mounted
 function _mount_portage_check() {
-  local shares=(/etc/portage /var/db/repos /var/cache/binpkgs /var/cache/distfiles)
+  local shares=(/etc/portage /etc/portage/repos.conf /var/db/repos /var/cache/binpkgs /var/cache/distfiles)
   local -i z=0
   for i ($shares)
   do
     grep -q $i /etc/mtab && z+=1
   done
 
-  if [[ $z == 4 ]]
+  if [[ $z == 5 ]]
   then
     return 0
   else

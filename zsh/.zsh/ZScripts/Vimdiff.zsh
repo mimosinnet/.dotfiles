@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# ATENCIÓ: fer un diff abans per saber si cal fer vimdiff
+# Útil en comparaacions múltiples
+
 if [[ ${#} -lt 3 ]]
 then
   print 'Usage:'
@@ -26,6 +29,6 @@ fi
   || file_remot="scp://$user@$hostname//$file_remot"
 
 echo "Remote file = $file_remot"
-echo "vimdiff $file_local $file_remot"
+echo "nvim -u NORC -d $file_local $file_remot"
 
-vimdiff $file_local $file_remot
+nvim -u NORC -d $file_local $file_remot

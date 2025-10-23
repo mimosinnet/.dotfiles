@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# utils: 
+#   swaymsg -t get_tree
+
 W2='2: mail'
 
 google-chrome-stable --new-window "https://outlook.office.com/calendar/view/workweek" "https://calendar.google.com/calendar" "https://www.google.com/finance/?hl=ca"

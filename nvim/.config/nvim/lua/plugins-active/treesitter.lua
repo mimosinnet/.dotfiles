@@ -22,6 +22,8 @@ local config = function()
 			"markdown",
 			"python",
 			"query",
+      "rust",
+      "ron",
 			"toml",
 			"vim",
 			"vimdoc",

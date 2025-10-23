@@ -1,4 +1,3 @@
-Key
-a help
 e Elinks 
 f Firefox
+h Help

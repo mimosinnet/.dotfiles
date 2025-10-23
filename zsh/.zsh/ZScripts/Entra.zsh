@@ -8,4 +8,15 @@ readonly server=${1:?"Define what server do yo want to enter."}
   && echo "Entering server $server" \
   || ( echo "Server $server not defined"; exit )
 
-ssh $server -t tmux -u attach
+tmux=$(ssh $server pgrep -c tmux)
+
+
+if [[ $tmux = 0 ]]
+then
+  ssh $server
+elif [[ $tmux > 0 ]]
+then
+  ssh $server -t tmux -u attach
+else
+  print "Error: $tmux, $server"
+fi

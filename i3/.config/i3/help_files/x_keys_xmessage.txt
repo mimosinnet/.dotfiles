@@ -6,7 +6,7 @@ Menu            dmenu           i4-dmenu-desktop
 
 * Window-key +  <key>           shift           ctrl            S+Ctrl
                 --------------------------------------------------------
- return         terminal        
+ return         alacritty       alac+tmux   
  arrows         focus           move
  Print          ScreenShot      AreaShot        DelayShot       WindowShot
  - (minus)      ScrathPad Show  ScrachPad Move
@@ -18,7 +18,7 @@ Menu            dmenu           i4-dmenu-desktop
  f focus        parent          child           toggle
  l fLoating     enable          disable         toggle
  m Maximize     fullscreen                      fulls-toggle
- p alsa         alsamixer       pavucontrol     pulseudio -k
+ p pipewire     alsamixer       pavucontrol     
  q Quit         Window          i3
  r Resize       resize
  s split        horizontal      vertical        toggle

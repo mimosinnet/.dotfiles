@@ -2,14 +2,16 @@
 
 # source this script to be able to change directory
 
-dir='/mnt/sistema'
+crypt_si='/home/mimosinnet/.config/sistema'
+crypt_no='/mnt/sistema'
 file='Codis.txt'
+
 # Número de dia de l'any
 dia=`date +%j`
 
-if ! grep -q 'encfs /mnt/sistema' /etc/mtab
+if ! grep -q '/mnt/sistema fuse.gocryptfs' /etc/mtab
 then
-	encfs --idle=30 /home/mimosinnet/.config/sistema $dir
+	 gocryptfs --idle 30m $crypt_si $crypt_no
 fi
-cp $dir/$file $dir/Segur/$dia$file
-cd $dir
+cp $crypt_no/$file $crypt_no/Segur/$dia$file
+cd $crypt_no

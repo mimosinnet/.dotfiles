@@ -2,7 +2,7 @@
 
 [[ $# > 0 ]] || { print "Indica quins arxius vols datar. " ; exit}
 
-now=$(date +'%Y.%m')
+now=$(date +'%Y.%m.%d')
 
 for file_old in $argv[@]
 do

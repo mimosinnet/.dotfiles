@@ -2,6 +2,8 @@
 # Compare the same filename in two hostnames
 # Rsync hostname file [test | run | delete]
 
+print 'Atenció: rsync local_file -> remote_file'
+
 # Modules {{{
 readonly lib="${0:a:h}/lib"
 source $lib/connection.zsh
@@ -11,8 +13,8 @@ source $lib/ask.zsh
 # Positional Parameters {{{
 readonly usage="
 USAGE:
-rsync hostname file       [*test | run | delete]
-rsync hostname directory/ [*test | run | delete]
+Rsync hostname file       [*test | run | delete]
+Rsync hostname directory/ [*test | run | delete]
 "
 if [[ $# -lt 2 ]] ; then
   print $usage; exit

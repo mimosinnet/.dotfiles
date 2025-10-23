@@ -55,27 +55,3 @@ api.nvim_set_keymap("n", "<leader>za", ":TZAtaraxis<CR>", {})
 api.nvim_set_keymap("n", "<C-_>", "gtc", { noremap = false })
 api.nvim_set_keymap("v", "<C-_>", "goc", { noremap = false })
 
---[[ Plugins: {{{
-
-Telescope
-  '<leader>sh',       'Telescope help_tags',   '[S]earch [H]elp' ),
-  '<leader>sk',       'Telescope keymaps',     '[S]earch [K]eymaps' ),
-  '<leader>sf',       'Telescope find_files',  '[S]earch [F]iles' ),
-  '<leader>ss',       'Telescope builtin',     '[S]earch [S]elect Telescope' ),
-  '<leader>sw',       'Telescope grep_string', '[S]earch current [W]ord' ),
-  '<leader>sg',       'Telescope live_grep',   '[S]earch by [G]rep' ),
-  '<leader>sd',       'Telescope diagnostics', '[S]earch [D]iagnostics' ),
-  '<leader>sr',       'Telescope resume',      '[S]earch [R]esume' ),
-  '<leader>s.',       'Telescope oldfiles',    '[S]earch Recent Files ("." for repeat)' ),
-  '<leader><leader>', 'Telescope buffers',     '[ ] Find existing buffers' ),
-
-Lspsaga
-  move_in_saga = { prev = "<C-k>", next = "<C-j>" }
-
-Treesitter
-  init_selection = "<C-s>",
-  node_incremental = "<C-s>",
-  scope_incremental = false,
-  node_decremental = "<BS>",
-
-}}} --]]

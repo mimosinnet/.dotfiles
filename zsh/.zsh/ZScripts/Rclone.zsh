@@ -13,7 +13,7 @@ grep -q /home/mimosinnet/Dades/Drive /etc/mtab ||
 
 usage='
 USAGE: 
-    rclone.zsh [ OneDrive | Gdrive ]
+    rclone.zsh [ OneDrive | Gdrive | Teams_TFG ]
 '
 
 drive='/home/mimosinnet/Dades/Drive'
@@ -28,6 +28,11 @@ then
     dir_loc="$drive/Gdrive"
     remote='GD'
     backup='Z_BackupGdrive'
+elif [[ $1 == 'Teams_TFG' ]]
+then
+    dir_loc="$drive/Teams_TFG"
+    remote='Teams_TFG'
+    backup='Z_BackupTeams_TFG'
 else
     print $usage
     exit

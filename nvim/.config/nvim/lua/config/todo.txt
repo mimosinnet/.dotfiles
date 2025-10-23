@@ -1,0 +1,8 @@
+Comments with gcc
+
+* https://stackoverflow.com/questions/57443128/set-commentstring-for-files-of-unknown-extension
+* https://stackoverflow.com/questions/2666551/vim-default-syntax-for-files-with-no-extension
+* https://www.reddit.com/r/vim/comments/kqplkw/change_default_commentstring_of_a_certain_file/
+
+
+

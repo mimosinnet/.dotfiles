@@ -4,7 +4,7 @@
 lib="${0:a:h}/lib"
 source $lib/check_root.zsh
 source $lib/connection.zsh
-if _connection mimory 111
+if _connection mimory 2049
 then
   print 'NFS server running'
 else

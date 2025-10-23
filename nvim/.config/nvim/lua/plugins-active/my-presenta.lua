@@ -77,7 +77,7 @@ local map_down = {
 }
 -- }}}
 
--- map Font PF Small / Green {{{
+-- mazcp Font PF Small / Green {{{
 local map_font = {
 	["<leader>PF"] = {
 		name = "Font",
@@ -96,6 +96,30 @@ local map_font = {
 	},
 }
 
+-- }}}
+
+-- map Image: PI {{{
+local map_image = {
+	["<leader>PI"] = {
+		name = "Image",
+		function()
+			require("presenta").image()
+		end,
+		"Image",
+	},
+}
+-- }}}
+
+-- map Sound: PS {{{
+local map_sound = {
+	["<leader>PS"] = {
+		name = "Sound",
+		function()
+			require("presenta").sound()
+		end,
+		"Sound",
+	},
+}
 -- }}}
 
 -- map Test: P Line P Position {{{
@@ -118,6 +142,18 @@ local map_test = {
 }
 -- }}}
 
+-- map Video: PV {{{
+local map_video = {
+	["<leader>PV"] = {
+		name = "Video",
+		function()
+			require("presenta").video()
+		end,
+		"Video",
+	},
+}
+-- }}}
+
 return {
 	name = "presenta",
 	cmd = "Presenta",
@@ -129,6 +165,9 @@ return {
 		wk.register(map_comment)
 		wk.register(map_down)
 		wk.register(map_font)
+		wk.register(map_image)
+		wk.register(map_sound)
 		wk.register(map_test)
+		wk.register(map_video)
 	end,
 }

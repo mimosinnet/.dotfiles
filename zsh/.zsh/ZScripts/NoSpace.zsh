@@ -1,12 +1,15 @@
 #!/bin/zsh
 
+[[ $# > 0 ]] || { print "Indica a quins arxius vols eliminar caràcters especials. " ; exit}
+
 function rename() {
   name=$(detox -n $file)
   if [[ $name == '' ]]
   then
-    print "✗ File '$file' does not have special characters"
+    print "✗ L'arxius '$file' no té caràcters esepcials. "
   else
     print "✓ $name"
+    # if name is unset set it to name
     name=(${=name})
     newname=$name[-1]
     detox $file
@@ -20,7 +23,7 @@ do
   then
     rename
   else
-    print "✗ File $file does not exit"
+    print "✗ L'arxiu $file no existeix. "
   fi
 done
 

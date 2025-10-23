@@ -1,10 +1,5 @@
-key
-a help
+h Help
 i rssi
 r rtorrent
 s Signal
 t Telegram mimosinnet
-
-Also:
-- connman
-- wpa_gui

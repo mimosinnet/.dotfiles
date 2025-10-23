@@ -1,41 +1,104 @@
-# Info {{{
+# Info {{{1
 # Read `man 5 sway` for a complete reference.
 # A FER:
 # - Eliminar parcellite
-# }}}
+
+# Example Configurations {{{2  
+# https://igordejanovic.net/recipes/sway-config/
+# https://taingram.org/blog/sway-tips.html
+# https://www.city17.xyz/windows-placement-in-wayland-workspaces/
+# 2}}}
+
+# Resources {{{
+# https://github.com/altdesktop/i3ipc-python
+
+# }}} 
+
+# 2}}}
 
 # set variables {{{
-set $mod Mod4
-set  $1 KP_End
-set  $2 KP_Down
-set  $3 KP_Next
-set  $4 KP_Left
-set  $5 KP_Begin
-set  $6 KP_Right
-set  $7 KP_Home 
-set  $8 KP_Up
-set  $9 KP_Prior
-set $10 KP_Insert
-set  $W1  "1: Files"
-set  $W2  "2: Mail"
-set  $W3  "3: Utils"
-set  $W4  "4: Browsers"
-set  $W5  "5: System"
-set  $W6  "6: Leisure"
-set  $W7  "7: Chrome"
-set  $W8  "8: People"
-set  $W9  "9: Office"
-set $W10 "10: Zero"
-# Home row direction keys, like vim (not used)
-# set $left h
-# set $down j
-# set $up k
-# set $right l
-# Your preferred terminal emulator
-set $term alacritty
+
+set {
+  $mod1 mod4
+  $mod2 Multi_key
+  $term alacritty
+
+  # KeyPad {{{
+    $1 KP_End
+    $2 KP_Down
+    $3 KP_Next
+    $4 KP_Left
+    $5 KP_Begin
+    $6 KP_Right
+    $7 KP_Home 
+    $8 KP_Up
+    $9 KP_Prior
+   $10 KP_Insert
+   $11 KP_Delete
+  # }}}
+
+  # Workspaces {{{
+   $W1  "1: Files"
+   $W2  "2: Mail"
+   $W3  "3: Utils"
+   $W4  "4: Browsers"
+   $W5  "5: System"
+   $W6  "6: Leisure"
+   $W7  "7: Chrome"
+   $W8  "8: People"
+   $W9  "9: Office"
+  $W10 "10: Zero"
+  $W11 "11: ToolBox"
+  # }}}
+
+  # Colors {{{
+  $black #000000
+  $G1    #001000
+  $G2    #002000
+  $G3    #003000
+  $G4    #004000
+  $G5    #005000
+  $G6    #006000
+  $G7    #007000
+  $G8    #008000
+  $G9    #009000
+  $GA    #00a000
+  $GB    #00b000
+  $GC    #00c000
+  $GD    #00d000
+  $GE    #00e000
+  $GF    #00ff00
+  $white #ffffff
+  $red   #ff0000
+  $yel   #ffff00
+  # }}}
+
+  # Direction Keys {{{
+  # Home row direction keys, like vim (not used)
+  # $left h
+  # $down j
+  # $up k
+  # $right l
+  # Your preferred terminal emulator
+  # }}}
+
+  # gtk {{{
+  $gnome-schema org.gnome.desktop.interface
+  $system_theme 'Arc-Dark'
+  $system_icons 'Numix-Square'
+  $system_dpi_scaling_factor 1
+  $cursor_size 24
+  #set $cursor_theme Breeze
+  $cursor_theme Adwaita
+  $titlebar_text_size 24
+  $titlebar_font Cantarell
+  # }}}
+
+}
+
 # }}}
 
-# Automatically starting applications on startup {{{
+# Startup applications {{{
 # https://dev1galaxy.org/viewtopic.php?id=6452
 exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec gentoo-pipewire-launcher restart &
@@ -46,17 +109,21 @@ exec wl-paste --watch cliphist store
 # exec blueman-applet
 # exec google-chrome-stable -enable-features=UseOzonePlatform -ozone-platform=wayland --profile-directory=Default https://music.youtube.com/
 exec wpa_gui -t
-workspace '7: Chrome'; exec google-chrome-stable --new-window --profile-directory="Default"
-exec sleep 30s && /usr/local/bin/Telegram/Telegram
-# exec sleep 40s && pavucontrol --class=pavucontrol
-exec sleep 40s && pavucontrol 
+workspace '7: Chrome', exec google-chrome-stable --new-window --profile-directory="Default"
+exec thunderbird-bin
+exec sleep 50s && /usr/local/bin/Telegram/Telegram
+exec sleep 60s && vivaldi
+exec sleep 10m && /home/mimosinnet/.dotfiles/sway/.config/sway/bin/Cal.zsh
+
+# ToolBox {{{
 # exec sleep 40s && pasystray
-exec sleep 50s && thunderbird-bin
-exec sleep 70s && vivaldi
-exec sleep 80s && $term -e nvim
-exec sleep 90s && /home/mimosinnet/.dotfiles/sway/.config/sway/bin/Cal.zsh
-exec sleep 10m && qpwgraph
-exec sleep 11m && /usr/bin/signal-desktop
+exec sleep 1m && pavucontrol 
+exec sleep 2m && $term -T nvim -e nvim
+exec sleep 3m && gvim
+exec sleep 4m && qpwgraph
+exec sleep 5m && /usr/bin/signal-desktop
+# }}}
+
 # exec sleep 6m && discord
 # exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
 # exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
@@ -69,9 +136,23 @@ exec sleep 11m && /usr/bin/signal-desktop
 # exec su - nosimim -c /usr/local/bin/Telegram_Nisomim/Telegram
 # }}}
 
-# input / output {{{1
+# General Configuration {{{1
 
-# input {{{2
+# gtk {{{
+# També es pot congiruar amb dconf-editor
+# Veure com funciona gnome-extra/gnome-tweaks
+exec_always {
+  # gsettings set $gnome-schema gtk-theme $system_theme
+  # gsettings set $gnome-schema icon-theme $system_icons
+  gsettings set $gnome-schema text-scaling-factor $system_dpi_scaling_factor
+  gsettings set $gnome-schema cursor-theme $cursor_theme
+  gsettings set $gnome-schema cursor-size $cursor_size
+}
+# }}}
+
+# input / output {{{2
+
+# input {{{3
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 input * {
@@ -84,9 +165,13 @@ input * {
 input "2362:9488:PixArt_USB_Optical_Mouse"  {
   left_handed enabled
 }
-# 2}}}
 
-# output {{{2
+# Mouse
+seat seat0 xcursor_theme $cursor_theme $cursor_size
+
+# 3}}}
+
+# output {{{3
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 output {
@@ -95,15 +180,15 @@ output {
   DP-2      pos 3840 0 mode 1920x1080 bg #000000 solid_color
 }
 
-# 2}}}
+# 3}}}
 
-# Power off outputs when system idle {{{2
+# Power off outputs when system idle {{{3
 exec swayidle -w \
   timeout 900 'swaymsg "output * power off"' \
   resume 'swaymsg "output * power on"'
-# 2}}}
+# 3}}}
 
-# 1}}}
+# 2}}}
 
 # Menu {{{
 
@@ -113,108 +198,11 @@ exec swayidle -w \
 
 # for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 # set $menu exec $term -a launcher -e /usr/bin/sway-launcher-desktop
-# bindsym $mod+d exec $menu
+# bindsym $mod1+d exec $menu
 
 # }}}
 
-# keyboard bindings {{{
-
-# Menu
-# dmenu (a program launcher)
-bindsym Menu       exec dmenu_run
-# j4-dmenu-desktop
-bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
-
-# Return
-bindsym $mod+Return       exec $term --working-directory /home/mimosinnet/Baixades -e tmux
-bindsym $mod+Shift+Return exec $term --working-directory /home/mimosinnet/Baixades 
-
-# A: help
-bindsym $mod+a exec Gxmessage.zsh ~/.config/i3/help_files/x_keys_xmessage.txt
-
-# C: cliplist + Configuration reload restart
-# clipman, https://github.com/chmouel/clipman/?tab=readme-ov-file
-# bindsym $mod+c clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0"
-# cliphist, https://github.com/sentriz/cliphist
-bindsym $mod+c exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Control+c restart
-
-# F: Focus the parent/child container
-bindsym $mod+f         focus parent
-bindsym $mod+Shift+f   focus child
-# Swap focus between the tiling area and the floating area
-# bindsym $mod+Control+f focus mode_toggle
-
-# L: fLoating windows 
-bindsym $mod+L floating enable
-bindsym $mod+Shift+L floating disable
-bindsym $mod+Control+L floating toggle 
-
-# M: Maximaze focused container (full screen)
-bindsym $mod+m fullscreen enable
-bindsym $mod+Shift+m fullscreen disable
-bindsym $mod+Control+m fullscreen toggle
-
-# P: pipewire, Pavcontrol, alsamixer
-bindsym $mod+p         exec $term -e alsamixer
-bindsym $mod+Shift+p   exec pavucontrol
-
-# Q: Quit (kill) focused window, Quit sway
-bindsym $mod+q kill
-bindsym $mod+Shift+q exec Quit
-# bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'  'i3-msg exit'"
-# bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-
-# S: Split the current focussed object horizontally or vertically
-# New window will open horizontally or vertically
-bindsym $mod+s split h
-bindsym $mod+shift+s split v
-bindsym $mod+Control+s split toggle
-
-# V: moVe containers/workspaces to RandR outputs 
-bindsym $mod+v move container to output right
-bindsym $mod+Shift+v move container to output left
-bindsym $mod+Ctrl+v move workspace to output right
-bindsym $mod+Shift+Ctrl+v move workspace to output left
-# 
-
-# Y: laYout
-bindsym $mod+y layout stacking
-bindsym $mod+Shift+y layout tabbed
-bindsym $mod+Control+y layout toggle split
-
-# Volume
-# bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-# bindsym XF86AudioLowerVolume exec amixer set Master 5%-
-# bindsym XF86AudioMute        exec amixer set Master toggle
-
-bindsym $mod+u         exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
-bindsym $mod+Shift+u   exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+Control+u exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-
-# https://wiki.gentoo.org/wiki/Sway#Sound_volume
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-
-# Print Screen
-# revisar:
-# https://github.com/201dreamers/sway-config/blob/master/.config/sway/config
-# https://gist.github.com/7415963987456321/809f04a30aac61ab12504d8aa0e2111f
-# https://gist.github.com/Mel34/ab9b6d562f9181ed8bbdc7c76022b85b
-# https://github.com/nwg-piotr/swayinfo/blob/master/config/sway/config
-bindsym $mod+Print exec Print_Screen root
-# bindsym --to-code $mod+Shift+Print exec Print_Screen area
-bindsym --to-code $mod+Shift+Print exec grim -g "$(slurp)" - | wl-copy && zenity --info --title "Area ScreenShot" --timeout 5 --text "Screenshot in clipboard"
-bindsym $mod+Control+Print exec Print_Screen delay
-bindsym $mod+Control+Print+Shift exec Print_Screen window
-# }}}
-
-# Configuration {{{1
-
-# 4.3. Fonts {{{
+# Fonts {{{
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -230,107 +218,112 @@ bindsym $mod+Control+Print+Shift exec Print_Screen window
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
+# font pango:$titlebar_font $titlebar_text_size
+
 # }}}
 
-# 4.11. Window title alignment {{{2
+# 1}}}
+
+# keyboard bindings {{{
+
+# Menu
+# dmenu (a program launcher)
+# bindsym Menu       exec dmenu_run
+# j4-dmenu-desktop
+# bindsym Shift+Menu exec --no-startup-id j4-dmenu-desktop
+
+# Return
+bindsym $mod1+Return       exec $term --working-directory /home/mimosinnet/Baixades -e tmux
+bindsym $mod1+Shift+Return exec $term --working-directory /home/mimosinnet/Baixades 
+
+# C: cliplist + Configuration reload restart
+# clipman, https://github.com/chmouel/clipman/?tab=readme-ov-file
+# bindsym $mod1+c clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0"
+# cliphist, https://github.com/sentriz/cliphist
+bindsym $mod1+c exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
+# reload the configuration file
+bindsym $mod1+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod1+Control+c restart
+
+# F: Focus the parent/child container
+bindsym $mod1+f         focus parent
+bindsym $mod1+Shift+f   focus child
+# Swap focus between the tiling area and the floating area
+# bindsym $mod1+Control+f focus mode_toggle
+
+# H: help
+bindsym $mod1+h exec Gxmessage.zsh ~/.config/sway/help_files/x_keys_xmessage.txt
+
+# L: fLoating windows 
+bindsym $mod1+L floating enable
+bindsym $mod1+Shift+L floating disable
+bindsym $mod1+Control+L floating toggle 
+
+# M: Maximaze focused container (full screen)
+bindsym $mod1+m fullscreen enable
+bindsym $mod1+Shift+m fullscreen disable
+bindsym $mod1+Control+m fullscreen toggle
+
+# P: pipewire, Pavcontrol, alsamixer
+
+# Q: Quit (kill) focused window, Quit sway
+bindsym $mod1+q kill
+bindsym $mod1+Shift+q exec Quit
+# bindsym $mod1+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3'  'i3-msg exit'"
+# bindsym $mod1+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# S: Split the current focussed object horizontally or vertically
+# New window will open horizontally or vertically
+bindsym $mod1+s split h
+bindsym $mod1+shift+s split v
+bindsym $mod1+Control+s split toggle
+
+# V: moVe containers/workspaces to RandR outputs 
+bindsym $mod1+v move container to output right
+bindsym $mod1+Shift+v move container to output left
+bindsym $mod1+Ctrl+v move workspace to output right
+bindsym $mod1+Shift+Ctrl+v move workspace to output left
+# 
+
+# Y: laYout
+bindsym $mod1+y layout stacking
+bindsym $mod1+Shift+y layout tabbed
+bindsym $mod1+Control+y layout toggle split
+
+# Volume
+# bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+# bindsym XF86AudioMute        exec amixer set Master toggle
+
+bindsym $mod1+u         exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym $mod1+Shift+u   exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym $mod1+Control+u exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
+# https://wiki.gentoo.org/wiki/Sway#Sound_volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Print Screen
+# revisar:
+# https://github.com/201dreamers/sway-config/blob/master/.config/sway/config
+# https://gist.github.com/7415963987456321/809f04a30aac61ab12504d8aa0e2111f
+# https://gist.github.com/Mel34/ab9b6d562f9181ed8bbdc7c76022b85b
+# https://github.com/nwg-piotr/swayinfo/blob/master/config/sway/config
+bindsym $mod1+Print exec Print_Screen root
+# bindsym --to-code $mod1+Shift+Print exec Print_Screen area
+bindsym --to-code $mod1+Shift+Print exec grim -g "$(slurp)" - | wl-copy && zenity --info --title "Area ScreenShot" --timeout 5 --text "Screenshot in clipboard"
+bindsym $mod1+Control+Print exec Print_Screen delay
+bindsym $mod1+Control+Print+Shift exec Print_Screen window
+# }}}
+
+# Windows {{{1
+
+# Window title alignment {{{2
 title_align left 
 # 2}}}
 
-# Status bar  {{{2
-
-# i3bar Start i3bar to display a workspace bar 
-bar {
- position top
-   status_command i3blocks -c ~/.config/sway/i3blocks.conf
- colors {
-  # yellow
- 	separator  #FFF000
- 	# green
- 	statusline #00FF00
-   # black
-   background #000000
-   # dark grey
-   focused_background #3B3B3B
-   # <border> <background> <text>
-   # active_workspace #323232 #FFFAFA #FF00FF
-   # focused_workspace  
-   inactive_workspace #323232 #323232 #5C5C5C
- 	}
-  font pango:DejaVu Sans Mono 10
- }
-
-# sway-bar Read `man 5 sway-bar` for more information about this section.
-#  bar {
-#      # status_command while ~/.config/sway/status.zsh; do sleep 1; done
-#      status_command ~/.config/sway/status.zsh
-#      # status_command ~/.config/sway/status.sh
-#  
-#  }
-
-# 2}}}
-
-#  Manipulating layout {{{ 
-
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-
-# The floating modifier {{{
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-
-floating_modifier $mod
-
-# }}}
-
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag enable
-
-# default layout stacking|tabbed
-workspace_layout tabbed
-
-# Focusing/Moving containers
-
-# Move your focus around
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
-# bindsym $mod+ntilde focus right
-
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
-# bindsym $mod+Shift+j move left
-# bindsym $mod+Shift+k move down
-# bindsym $mod+Shift+l move up
-# bindsym $mod+Shift+$right move right
-# bindsym $mod+Shift+ntilde move right
-# bindsym $mod+Shift+ntilde move right
-
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-# }}}
-
-# 6.16. Window title icon {{{
-for_window [all] title_window_icon yes
-# }}}
-
-# 6.17. Changing border style {{{
+# Changing border style {{{
 # border normal|pixel|toggle [<n>]
 # border none
 
@@ -339,111 +332,61 @@ default_floating_border pixel
 
 # }}}
 
-# 6.21. Scratchpad {{{
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-
+# Window title icon {{{
+for_window [all] title_window_icon yes
 # }}}
 
-# 1}}}
+# Window Decorations {{{2
+# Others:
+# - https://roehler.ch/?workplace___linux___distributions___Arch___sway%2Fconfig
+# - https://git.deuill.org/deuill/dotfiles/src/commit/76edad9ac29175afae88734cfcad5e9c736cb270/.config/sway/config
+# - https://www.reddit.com/r/swaywm/comments/zfi4tb/i_only_recently_discovered_this/
+# - https://prefetch.eu/code/configs-public/tree/sway/config
 
-# Windows and Workspaces {{{1
+# class                    border  backgr  text    indic   child_border
+client.focused             $G5     $G5     $white  $yel    $G4
+client.focused_inactive    $G2     $G3     $white  $yel    $G4
+client.focused_tab_title   $red    $yel    $red
+client.unfocused           $G7     $G1     $GF     $red    $G4
+client.urgent              $G1     $GF     $G1     $red    $G4
 
-# switch to workspace {{{
-bindsym  $1 workspace  $W1
-bindsym  $2 workspace  $W2
-bindsym  $3 workspace  $W3
-bindsym  $4 workspace  $W4
-bindsym  $5 workspace  $W5
-bindsym  $6 workspace  $W6
-bindsym  $7 workspace  $W7
-bindsym  $8 workspace  $W8
-bindsym  $9 workspace  $W9
-bindsym $10 workspace $W10
+# 2}}}
 
-# bindsym $mod+button4 workspace 1
-# bindsym $mod+button5 workspace 2
+# Focusing/Moving windows around workspace {{{
 
-# }}}
+# Move your focus around
+# bindsym $mod1+Left focus left
+# bindsym $mod1+Down focus down
+# bindsym $mod1+Up focus up
+# bindsym $mod1+Right focus right
+# bindsym $mod1+ntilde focus right
 
-# Move focused container to workspace {{{
-bindsym Control+$1  move container to workspace  $W1
-bindsym Control+$2  move container to workspace  $W2
-bindsym Control+$3  move container to workspace  $W3
-bindsym Control+$4  move container to workspace  $W4
-bindsym Control+$5  move container to workspace  $W5
-bindsym Control+$6  move container to workspace  $W6
-bindsym Control+$7  move container to workspace  $W7
-bindsym Control+$8  move container to workspace  $W8
-bindsym Control+$9  move container to workspace  $W9
-bindsym Control+$10 move container to workspace $W10
-# }}}
+# Move your focus around workspace
+bindsym $mod1+Left focus left
+bindsym $mod1+Down focus down
+bindsym $mod1+Up focus up
+bindsym $mod1+Right focus right
 
-# Moving focused container to workspaces and move to workspace {{{
-bindsym Control+$mod+$1  move container to workspace  $W1; workspace  $W1
-bindsym Control+$mod+$2  move container to workspace  $W2; workspace  $W2
-bindsym Control+$mod+$3  move container to workspace  $W3; workspace  $W3
-bindsym Control+$mod+$4  move container to workspace  $W4; workspace  $W4
-bindsym Control+$mod+$5  move container to workspace  $W5; workspace  $W5
-bindsym Control+$mod+$6  move container to workspace  $W6; workspace  $W6
-bindsym Control+$mod+$7  move container to workspace  $W7; workspace  $W7
-bindsym Control+$mod+$8  move container to workspace  $W8; workspace  $W8
-bindsym Control+$mod+$9  move container to workspace  $W9; workspace  $W9
-bindsym Control+$mod+$10 move container to workspace $W10; workspace $W10
-# }}}
+# Move docused window around workspace
+# bindsym $mod1+Shift+j move left
+# bindsym $mod1+Shift+k move down
+# bindsym $mod1+Shift+l move up
+# bindsym $mod1+Shift+$right move right
+# bindsym $mod1+Shift+ntilde move right
+# bindsym $mod1+Shift+ntilde move right
 
-# Get clients on specific workspaces {{{
-assign [app_id="thunderbird"] $W2
-# for_window [app_id="google-chrome" title="^Calendari"] move to workspace $W2
-assign [app_id="signal"] $W3
-assign [class="obsidian"] $W3
-assign [class="Firefox"] $W4
-# assign [title="^Alacritty$"] $W5
-assign [app_id="org.pulseaudio.pavucontrol"] $W6
-assign [app_id="org.rncbc.qpwgraph"] $W6
-assign [class="Vivaldi-stable"] $W9
-# assign [app_id="google-chrome"] $W7
-assign [app_id="org.telegram.desktop"] $W8
-assign [class="libreoffice" title="Sense títol"] $W9
-# }}}
+# Move docused window around workspace
+bindsym $mod1+Shift+Left move left
+bindsym $mod1+Shift+Down move down
+bindsym $mod1+Shift+Up move up
+bindsym $mod1+Shift+Right move right
 
-# Set workspaces on specific screens {{{
-
-# Cols
-# 1 2 3
-# -----
-# 7 8 9
-# 4 5 6 
-# 1 2 3
-
-# Col1: output DisplayPort-0
-# Col2: output HDMI-A-1
-# Col3: output DisplayPort-1
-
-workspace $W7 output DP-1
-workspace $W4 output DP-1
-workspace $W1 output DP-1
-
-workspace $W8 output HDMI-A-2
-workspace $W5 output HDMI-A-2
-workspace $W2 output HDMI-A-2
-
-workspace $W9 output DP-2
-workspace $W6 output DP-2
-workspace $W3 output DP-2
-
-workspace $W10 output HDMI-A-2
 # }}}
 
 # Floating windows {{{
-floating_maximum_size 700 x 700
+# floating_maximum_size 900 x 900
 for_window [app_id="gxmessage"]                       floating enable
-for_window [app_id="org.pulseaudio.pavucontrol"]      floating enable
+# for_window [app_id="org.pulseaudio.pavucontrol"]      floating enable
 for_window [app_id="thunderbird" title="recordatori"] floating enable resize set 500 x 500
 for_window [app_id="Zotero" title="Zotero - Choose User Profile"] floating enable
 for_window [class="Pavumeter"]                        floating enable
@@ -463,9 +406,166 @@ for_window [class = "(?i)pinentry"] floating enable
 for_window [title = "About Mozilla Firefox"] floating enable
 for_window [window_role = "About"] floating enable
 
+# for_window [workspace=$W11] floating enable
+
 # }}}
 
-# 4.23. Automatic back-and-forth {{{
+# The floating modifier {{{
+# Drag floating windows by holding down $mod1 and left mouse button.
+# Resize them with right mouse button + $mod.
+# also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+
+floating_modifier $mod1
+
+# }}}
+
+# Scratchpad {{{
+
+# move the currently focused window to the scratchpad
+bindsym $mod1+Shift+minus move scratchpad
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod1+minus scratchpad show
+
+# }}}
+
+# 1}}}
+
+# Workspaces {{{1
+
+# Set workspaces on specific screens {{{
+
+# Cols
+# 1 2 3
+# -----
+# 7 8 9
+# 4 5 6 
+# 1 2 3
+#   0 .
+
+# Col1: output DP-1
+# Col2: output HDMI-A-2
+# Col3: output DP-2
+
+workspace $W7 output DP-1
+workspace $W4 output DP-1
+workspace $W1 output DP-1
+
+workspace $W8 output HDMI-A-2
+workspace $W5 output HDMI-A-2
+workspace $W2 output HDMI-A-2
+
+workspace $W9 output DP-2
+workspace $W6 output DP-2
+workspace $W3 output DP-2
+
+workspace $W10 output HDMI-A-2
+workspace $W11 output DP-2
+# }}}
+
+# Start windows on specific workspaces {{{
+assign [app_id="thunderbird"]                 $W2
+assign [class="obsidian"]                     $W3
+assign [class="Firefox"]                      $W4
+assign [app_id="org.rncbc.qpwgraph"]          $W6
+assign [class="Vivaldi-stable"]               $W9
+assign [app_id="org.telegram.desktop"]        $W8
+assign [app_id="org.pulseaudio.pavucontrol"]  $W11
+assign [title="^nvim$"]                       $W11
+assign [class="^Gvim$"]                       $W11
+assign [app_id="signal"]                      $W11
+# }}}
+
+# Status bar  {{{2
+# swaybar 
+bar {
+  font pango:DejaVu Sans Mono 10
+  mode dock
+  position top
+  status_command i3blocks -c ~/.config/sway/i3blocks.conf
+  colors {
+    background $G1
+    statusline $red
+ 	separator  $G9
+    focused_background $G2
+    focused_statusline $GF
+    focused_separator  $GD
+    #                  Border Backgr  Text
+    focused_workspace  $G5    $G5     $white
+    active_workspace   $G4    $G4     $white
+    inactive_workspace $G2    $G3     $white
+    urgent_workspace   $G2    $GE     $G1
+    # Modes:
+    binding_mode       $red   $red    $black
+ 	}
+ }
+# 2}}}
+
+#  Workspace Layout {{{ 
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+
+# move tiling windows via drag & drop by left-clicking into the title bar,
+# or left-clicking anywhere into the window while holding the floating modifier.
+tiling_drag enable
+
+# default layout stacking|tabbed
+workspace_layout tabbed
+# }}}
+
+# switch to workspace {{{
+bindsym  $1 workspace  $W1
+bindsym  $2 workspace  $W2
+bindsym  $3 workspace  $W3
+bindsym  $4 workspace  $W4
+bindsym  $5 workspace  $W5
+bindsym  $6 workspace  $W6
+bindsym  $7 workspace  $W7
+bindsym  $8 workspace  $W8
+bindsym  $9 workspace  $W9
+bindsym $10 workspace $W10
+bindsym $11 workspace $W11
+
+# bindsym $mod1+button4 workspace 1
+# bindsym $mod1+button5 workspace 2
+
+# }}}
+
+# Move focused container to workspace {{{
+bindsym Control+$1  move container to workspace  $W1
+bindsym Control+$2  move container to workspace  $W2
+bindsym Control+$3  move container to workspace  $W3
+bindsym Control+$4  move container to workspace  $W4
+bindsym Control+$5  move container to workspace  $W5
+bindsym Control+$6  move container to workspace  $W6
+bindsym Control+$7  move container to workspace  $W7
+bindsym Control+$8  move container to workspace  $W8
+bindsym Control+$9  move container to workspace  $W9
+bindsym Control+$10 move container to workspace $W10
+bindsym Control+$11 move container to workspace $W11
+# }}}
+
+# Moving focused container to workspaces and move to workspace {{{
+bindsym Control+$mod1+$1  move container to workspace  $W1; workspace  $W1
+bindsym Control+$mod1+$2  move container to workspace  $W2; workspace  $W2
+bindsym Control+$mod1+$3  move container to workspace  $W3; workspace  $W3
+bindsym Control+$mod1+$4  move container to workspace  $W4; workspace  $W4
+bindsym Control+$mod1+$5  move container to workspace  $W5; workspace  $W5
+bindsym Control+$mod1+$6  move container to workspace  $W6; workspace  $W6
+bindsym Control+$mod1+$7  move container to workspace  $W7; workspace  $W7
+bindsym Control+$mod1+$8  move container to workspace  $W8; workspace  $W8
+bindsym Control+$mod1+$9  move container to workspace  $W9; workspace  $W9
+bindsym Control+$mod1+$10 move container to workspace $W10; workspace $W10
+bindsym Control+$mod1+$11 move container to workspace $W11; workspace $W11
+# }}}
+
+# Automatic back-and-forth {{{
 # workspace_auto_back_and_forth yes
 # }}}
 
@@ -474,23 +574,24 @@ for_window [window_role = "About"] floating enable
 # Modes {{{1
 
 # bindsym modes {{{
-bindsym $mod+r mode "resize"
-bindsym Shift+$1  workspace  $W1; mode "Files"
-bindsym Shift+$2  workspace  $W2; mode "Mail"
-bindsym Shift+$3  workspace  $W3; mode "Utils"
-bindsym Shift+$4  workspace  $W4; mode "Browsers"
-bindsym Shift+$5  workspace  $W5; mode "System"
-bindsym Shift+$6  workspace  $W6; mode "Oci"
-bindsym Shift+$7  exec google-chrome-stable --new-window --profile-directory="Default"
-bindsym Shift+$8  workspace  $W8; mode "People"
-bindsym Shift+$9  workspace  $W9; mode "Office"
+bindsym $mod1+r mode "resize"
+bindsym Shift+$1   workspace  $W1; mode "Files"
+bindsym Shift+$2   workspace  $W2; mode "Mail"
+bindsym Shift+$3   workspace  $W3; mode "Utils"
+bindsym Shift+$4   workspace  $W4; mode "Browsers"
+bindsym Shift+$5   workspace  $W5; mode "System"
+bindsym Shift+$6   workspace  $W6; mode "Oci"
+bindsym Shift+$7   exec google-chrome-stable --new-window --profile-directory="Default"
+bindsym Shift+$8   workspace  $W8; mode "People"
+bindsym Shift+$9   workspace  $W9; mode "Office"
+bindsym Shift+$11  workspace  $W11; mode "ToolBox"
 # }}}
 
 # mode resize (resize containers) {{{2
 # resize window (you can also use the mouse for that)
 mode "resize" {
 
-	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/x_help_Resize.txt
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/x_help_Resize.txt
 
     # These bindings trigger as soon as you enter the resize mode
 
@@ -524,7 +625,7 @@ mode "resize" {
 
 # 1 Files {{{
 mode "Files" {
-	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/1_help_Files.txt
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/1_help_Files.txt
 	bindsym p exec pcmanfm
     bindsym r exec urxvtc -e ranger
     bindsym s exec spacefm
@@ -539,7 +640,7 @@ mode "Files" {
 
 # 2 Mail {{{
 mode "Mail" {
-	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/2_help_Mail.txt
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/2_help_Mail.txt
 	bindsym m exec xmessage -nearmouse -file ~/.config/sway/help_files/2_MuttLineEditorKeys.txt
 	bindsym n exec xmessage -nearmouse -file ~/.config/sway/help_files/2_MuttPatternModifier.txt
     bindsym s exec skypeforlinux
@@ -557,12 +658,10 @@ mode "Mail" {
 
 # 3 Utils {{{
 mode "Utils" {
-	bindsym a exec Gxmessage.zsh ~/.config/i3/help_files/3_help_Utils.txt
+	bindsym h exec Gxmessage.zsh ~/.config/i3/help_files/3_help_Utils.txt
     # bindsym o exec flatpak run md.obsidian.Obsidian
     bindsym c exec crqt
     bindsym f exec autofirma
-    bindsym g exec gvim
-    bindsym n exec exec $term -e nvim
     bindsym o exec obsidian
     bindsym r exec rstudio
     bindsym x exec xournalpp
@@ -577,7 +676,7 @@ mode "Utils" {
 
 # 4 Browsers {{{
 mode "Browsers" {
-	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/4_help_Browsers.txt
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/4_help_Browsers.txt
 	bindsym e exec $term -e lynx http://www.google.es 
 	bindsym f exec firefox-bin
 
@@ -590,7 +689,7 @@ mode "Browsers" {
 
 # 5 System {{{
 mode "System" {
-	bindsym a exec Gxmessage.zsh ~/.config/i3/help_files/5_help_System.txt
+	bindsym h exec Gxmessage.zsh ~/.config/i3/help_files/5_help_System.txt
 	bindsym Shift+e exec setxkbmap -model pc104 -layout es 
 	bindsym b exec bleachbit
 	bindsym e exec $term -geometry 128x42 -e bash -c "su -c elogv" 
@@ -609,10 +708,10 @@ mode "System" {
 
 # 6 Oci {{{2
 mode "Oci" {
-	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/6_help_Oci.txt
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/6_help_Oci.txt
 	bindsym d exec darktable
 	bindsym g exec gimp
-	bindsym h exec ghb
+	bindsym Shift+h exec ghb
 	bindsym i exec inkscape
     bindsym n exec $term -e newsboat
 	bindsym p exec pavucontrol --class=pavucontrol
@@ -632,7 +731,7 @@ mode "Oci" {
 
 # 8 People {{{2
 mode "People" {
-	bindsym a exec Gxmessage -nearmouse -file ~/.config/sway/help_files/8_help_People.txt
+	bindsym h exec Gxmessage.zsh -nearmouse -file ~/.config/sway/help_files/8_help_People.txt
     bindsym s exec /usr/bin/signal-desktop
     bindsym t exec /usr/local/bin/Telegram/Telegram
 
@@ -644,7 +743,7 @@ mode "People" {
 
 # 9 Office {{{2
 mode "Office" {
-	bindsym a exec Gxmessage.zsh ~/.config/sway/help_files/9_help_Office.txt
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/9_help_Office.txt
     # bindsym l exec /usr/local/bin/LibreOffice-fresh.full-x86_64.AppImage
 	bindsym l exec flatpak run org.libreoffice.LibreOffice
     # bindsym l exec libreoffice-bin
@@ -659,6 +758,21 @@ mode "Office" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+# 2}}}
+
+# 11 ToolBox {{{2
+mode "ToolBox" {
+	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/11_help_ToolBox.txt
+    bindsym Shift+a exec $term -e alsamixer
+    bindsym g exec gvim
+    bindsym n exec exec $term -T nvim -e nvim
+    bindsym p exec pavucontrol
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 # 2}}}
 
 # 1}}}

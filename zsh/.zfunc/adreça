@@ -1,5 +1,0 @@
-# Trobar un contacte de mutt
-function adreça() {
-	grep $1 .mutt/data/aliases
-}
-

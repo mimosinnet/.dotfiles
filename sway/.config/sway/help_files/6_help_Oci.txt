@@ -1,14 +1,13 @@
-
-  a help
-  d Darktable (images)
-  g Gimp
-  h Handbrake (ghb) Edició Vídeo
-  i Inkscape
-  p Pavucontrol
-  q Qjackctl (audio)
-  s Shotcut
-  t subTitle editor
-  u aUdacity
-  v Vlc
-  w Whisper
-
+d Darktable (images)
+g Gimp
+h Help
+H Handbrake (ghb) Edició Vídeo
+i Inkscape
+n newsboat
+p Pavucontrol
+q Qjackctl (audio)
+s Shotcut
+t subTitle editor
+u aUdacity
+v Vlc
+w Whisper

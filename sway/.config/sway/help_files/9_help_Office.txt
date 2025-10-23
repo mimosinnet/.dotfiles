@@ -1,5 +1,4 @@
-Key
-a help
+h Help
 l libreoffice
 p mupdf
 q qpdfview

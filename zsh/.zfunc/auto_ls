@@ -1,5 +1,0 @@
-#This is for auto ls after cding
-function chpwd() {
-    ls --color
-}
-
