@@ -53,6 +53,7 @@ set {
 
   # Colors {{{
   $black #000000
+  # Green
   $G1    #001000
   $G2    #002000
   $G3    #003000
@@ -68,7 +69,24 @@ set {
   $GD    #00d000
   $GE    #00e000
   $GF    #00ff00
+  # Red
+  $R1    #100000
+  $R2    #200000
+  $R3    #300000
+  $R4    #400000
+  $R5    #500000
+  $R6    #600000
+  $R7    #700000
+  $R8    #800000
+  $R9    #900000
+  $RA    #a00000
+  $RB    #b00000
+  $RC    #c00000
+  $RD    #d00000
+  $RE    #e00000
+  $RF    #ff0000
   $white #ffffff
+
   $red   #ff0000
   $yel   #ffff00
   # }}}
@@ -344,11 +362,11 @@ for_window [all] title_window_icon yes
 # - https://prefetch.eu/code/configs-public/tree/sway/config
 
 # class                    border  backgr  text    indic   child_border
-client.focused             $G5     $G5     $white  $yel    $G4
+client.focused             $G2     $G7     $white  $yel    $G4
 client.focused_inactive    $G2     $G3     $white  $yel    $G4
-client.focused_tab_title   $red    $yel    $red
+client.focused_tab_title   $red    $yel    $RF
 client.unfocused           $G7     $G1     $GF     $red    $G4
-client.urgent              $G1     $GF     $G1     $red    $G4
+client.urgent              $RF     $GF     $RF     $red    $G4
 
 # 2}}}
 
@@ -471,8 +489,8 @@ assign [app_id="thunderbird"]                 $W2
 assign [class="obsidian"]                     $W3
 assign [class="Firefox"]                      $W4
 assign [app_id="org.rncbc.qpwgraph"]          $W6
-assign [class="Vivaldi-stable"]               $W9
 assign [app_id="org.telegram.desktop"]        $W8
+assign [app_id="vivaldi-stable"]              $W9
 assign [app_id="org.pulseaudio.pavucontrol"]  $W11
 assign [title="^nvim$"]                       $W11
 assign [class="^Gvim$"]                       $W11
@@ -488,18 +506,18 @@ bar {
   status_command i3blocks -c ~/.config/sway/i3blocks.conf
   colors {
     background $G1
-    statusline $red
+    statusline $RF
  	separator  $G9
     focused_background $G2
     focused_statusline $GF
     focused_separator  $GD
     #                  Border Backgr  Text
-    focused_workspace  $G5    $G5     $white
+    focused_workspace  $G5    $G7     $white
     active_workspace   $G4    $G4     $white
     inactive_workspace $G2    $G3     $white
-    urgent_workspace   $G2    $GE     $G1
+    urgent_workspace   $R7    $R1     $RF
     # Modes:
-    binding_mode       $red   $red    $black
+    binding_mode       $RF    $RF     $black
  	}
  }
 # 2}}}
