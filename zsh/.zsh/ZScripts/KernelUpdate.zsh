@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-version='6.12.41'
+version='6.12.58'
 # revision: '', '-r1', '-r2',..,
 revision=''
 system='gentoo'
