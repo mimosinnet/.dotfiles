@@ -34,7 +34,6 @@ else
 fi
 # }}}
 
-
 # _ffmpeg: incrustar subtitols {{{
 function _ffmpeg() {
   local sub=$1
