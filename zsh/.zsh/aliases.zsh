@@ -70,7 +70,8 @@ alias -r MountVirtualbox="$Actius/MountFolder.zsh /home/mimosinnet/Dades/Virtual
 alias -r MountZoteroBkp=" $Actius/MountFolder.zsh /home/mimosinnet/Dades/Backup/bkp_zotero"
 # }}}
 
-# Alias MoveLast {{{
+# Alias Move {{{
+alias -r MoveFile="$Actius/MoveFile.zsh"
 alias -r MoveLastBaixades="$Actius/MoveLast.zsh Baixades"
 alias -r MoveLastScreenShots="$Actius/MoveLast.zsh Dades/ScreenShots"
 alias -r MoveLastTemp="$Actius/MoveLast.zsh Baixades/Temp"
@@ -121,16 +122,17 @@ alias -r Vimdiff_Psicosocial='RunRepo Vimdiff_Server'
 
 # Alias Servidors {{{
 #alias -r windows="TERM='xterm' ssh mimosinnet@windows11w"
-alias -r mimomedia="$Actius/Entra.zsh mimomedia10"
 alias -r fx="$Actius/Entra.zsh fx"
-alias -r mimoserver="$Actius/Entra.zsh mimoserver"
-alias -r phenom="$Actius/Entra.zsh phenom"
-alias -r mimomini12w="$Actius/Entra.zsh mimomini12w"
-alias -r mimofeina12w="$Actius/Entra.zsh mimofeina12w"
-alias -r nisomim12w="$Actius/Entra.zsh nisomim12w"
-alias -r mimory="$Actius/Entra.zsh mimory"
 alias -r generatech="$Actius/Entra.zsh generatech"
+alias -r mimofeina12w="$Actius/Entra.zsh mimofeina12w"
+alias -r mimofire="$Actius/Entra.zsh mimofire"
+alias -r mimomedia="$Actius/Entra.zsh mimomedia10"
+alias -r mimomini12w="$Actius/Entra.zsh mimomini12w"
+alias -r mimory="$Actius/Entra.zsh mimory"
+alias -r mimoserver="$Actius/Entra.zsh mimoserver"
 alias -r mimouab="$Actius/Entra.zsh mimouab"
+alias -r nisomim12w="$Actius/Entra.zsh nisomim12w"
+alias -r phenom="$Actius/Entra.zsh phenom"
 # }}}
 
 # Alias Shell Commands {{{

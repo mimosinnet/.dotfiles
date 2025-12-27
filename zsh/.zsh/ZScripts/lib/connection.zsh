@@ -8,7 +8,7 @@ autoload -U tcp_open
 function _connection() {
   local server=$1
   local port=$2
-  local servers=(mimoserver phenom mimofeina mimouab generatech mimory nisomim mimomini ryzen5)
+  local servers=(mimoserver phenom mimofeina mimouab generatech mimory nisomim mimomini ryzen5 mimofire)
   if ! (( $servers[(Ie)$server] ))
   then
     print "No server '$server' available"

@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-servers=(mimoserver fx  phenom mimomini12w nisomim12w mimofeina mimouab mimory generatech)
+servers=(mimoserver fx  phenom mimomini12w nisomim12w mimofeina mimouab mimory generatech mimofire)
 echo "Available servers: $servers\n"
 readonly server=${1:?"Define what server do yo want to enter."}
 

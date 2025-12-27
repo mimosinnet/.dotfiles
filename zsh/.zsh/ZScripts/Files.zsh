@@ -1,14 +1,7 @@
 #!/bin/zsh
 
-# printline $lines {{{
-function printline() {
-  for (( i = 1; i < $1; i++ ))
-  do
-    printf '-'
-  done
-  print "\n"
-}
-# }}}
+lib="${0:a:h}/lib"
+source "$lib/printline.zsh"
 
 # listfiles {{{
 function listfiles() {
@@ -19,18 +12,18 @@ function listfiles() {
   else
     files=("${(f)$(ls *$pattern*.$extension)}")
   fi
-  printline 60
+  _printline 60
   print 'Arxius: '
-  printline 60
+  _printline 60
   print -c $files
-  printline 60
+  _printline 60
 }
 # }}}
 
-printline 60
+_printline 60
 print 'Usage: Files.zsh extension   pattern         delete'
 print 'Usage: Files.zsh extension ( pattern | all ) (del | nodel)'
-printline 60
+_printline 60
 
 readonly extension=${1:?'Extension must be declared'}
 readonly pattern=${2:='all'}

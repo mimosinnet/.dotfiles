@@ -362,10 +362,10 @@ for_window [all] title_window_icon yes
 # - https://prefetch.eu/code/configs-public/tree/sway/config
 
 # class                    border  backgr  text    indic   child_border
-client.focused             $G2     $G7     $white  $yel    $G4
-client.focused_inactive    $G2     $G3     $white  $yel    $G4
+client.focused             $G9     $G7     $white  $yel    $G9
+client.focused_inactive    $G6     $G6     $white  $yel    $G4
 client.focused_tab_title   $red    $yel    $RF
-client.unfocused           $G7     $G1     $GF     $red    $G4
+client.unfocused           $G2     $G2     $GA     $red    $G4
 client.urgent              $RF     $GF     $RF     $red    $G4
 
 # 2}}}

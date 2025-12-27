@@ -3,7 +3,7 @@
  
 function _check_server() {
   local server=$1
-  local servers=(mimoserver phenom mimofeina12w mimouab generatech mimory nisomim)
+  local servers=(mimoserver phenom mimofeina12w mimouab generatech mimory nisomim mimofire)
   if (( $servers[(Ie)$server] ))
   then
     return 0
