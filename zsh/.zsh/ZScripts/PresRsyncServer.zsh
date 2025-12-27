@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 from='/home/mimosinnet/Dades/IntercanviWin/Presentacions'
-to_mimouab='mimosinnet@mimouab:/home/mimosinnet/Dades/Webs'
+to_uabmimo='mimosinnet@uabmimo:/home/mimosinnet/Dades/Webs'
 to_generatech='mimosinnet@generatech:/home/mimosinnet/Dades/Webs'
 
 lib="${0:a:h}/lib"
@@ -37,6 +37,6 @@ function sincronitzar() {
 }
 # }}}
 
-_ask "sincronitzar mimouab"    && sincronitzar mimouab    158.109.145.115 $to_mimouab
+_ask "sincronitzar uabmimo"    && sincronitzar uabmimo    158.109.145.115 $to_uabmimo
 _ask "sincronitzar generatech" && sincronitzar generatech 158.109.152.23  $to_generatech
 
