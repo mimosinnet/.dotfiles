@@ -3,6 +3,11 @@
 # ATENCIÓ: fer un diff abans per saber si cal fer vimdiff
 # Útil en comparaacions múltiples
 
+# lib {{{
+lib="${0:a:h}/lib"
+source $lib/connection.zsh
+# }}}
+
 if [[ ${#} -lt 3 ]]
 then
   print 'Usage:'
@@ -14,6 +19,12 @@ readonly user=${1:?'You must specify the user'}
 readonly hostname=${2:?'You must specify the hostname'}
 file_local=${3:?'You must specify the local file to vimdiff'}
 file_remot=${4:='same'}
+
+if ! _connection $hostname 1964
+then
+  print "No connection to $server:$port"
+  exit
+fi
 
 file_local=$(realpath -e $file_local)
 if [[ -f $file_local ]]

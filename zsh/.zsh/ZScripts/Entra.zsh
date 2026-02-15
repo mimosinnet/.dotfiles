@@ -1,15 +1,20 @@
 #!/bin/zsh
 
-servers=(mimoserver fx  phenom mimomini12w nisomim12w mimofeina mimouab mimory generatech mimofire)
-echo "Available servers: $servers\n"
+lib="${0:a:h}/lib"
+source $lib/servidors.zsh
+# provides $defined
+source $lib/connection.zsh
+
 readonly server=${1:?"Define what server do yo want to enter."}
 
-(( $servers[(Ie)$1] )) \
+_servidors $server
+$defined \
   && echo "Entering server $server" \
-  || ( echo "Server $server not defined"; exit )
+  || { print "No server '$server' available"; exit; }
+
+_connection $server 1964 || {  print "No connection to $server:1964" ; exit; }
 
 tmux=$(ssh $server pgrep -c tmux)
-
 
 if [[ $tmux = 0 ]]
 then
