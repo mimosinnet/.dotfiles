@@ -1,7 +1,12 @@
 # Alias Actius {{{
-alias -r BaixaG='raku /home/mimosinnet/Dades/Scripts/Actius/Baixa.raku generatech'
-alias -r BaixaP='raku /home/mimosinnet/Dades/Scripts/Actius/Baixa.raku psicosocial'
+alias -r Actualitza="$Actius/Actualitza.zsh"
 alias -r Files="$Actius/Files.zsh"
+alias -r Kernel_Update="$Actius/KernelUpdate.zsh"
+alias -r MountPortage="$Actius/MountPortage.zsh"
+alias -r NoSpace="$Actius/NoSpace.zsh"
+alias -r Rsync="$Actius/Rsync.zsh"
+alias -r Vell="$Actius/Vell.zsh"
+alias -r Vimdiff="$Actius/Vimdiff.zsh"
 # }}}
 
 # Alias Aplicacions {{{
@@ -12,7 +17,6 @@ alias -r Lichess='/usr/local/bin/LDA/Lichess'
 # alias -r LO='/usr/bin/libreoffice-bin'
 alias -r LO='flatpak run org.libreoffice.LibreOffice'
 alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
-alias -r NoSpace="$Actius/NoSpace.zsh"
 # https://superuser.com/questions/232457/zsh-output-whole-history
 alias fzf="fzf --preview-window top:30 --preview '([[ -f {} ]] && (bat --style=numbers --color=always\
      {} || bat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'"
@@ -58,13 +62,8 @@ alias -r XarxaRapida="$Actius/Xarxa.zsh rapid"
 alias -r OpenVpn="$Actius/openvpn.zsh"
 # }}}
 
-# Alias Mail {{{
-alias -r Nous='watch Mails new' Vells='watch Mails cur'
-# }}}
-
 # Alias Mount {{{
 alias -r Mount='mount | grep nfs && mount | grep vg'
-# alias -r MountDocuments='RunRepo   Mount phenom /home/mimosinnet/Dades/Documents'
 alias -r MountMultimedia="$Actius/MountFolder.zsh /mnt/MultiMedia"
 alias -r MountVirtualbox="$Actius/MountFolder.zsh /home/mimosinnet/Dades/VirtualBox"
 alias -r MountZoteroBkp=" $Actius/MountFolder.zsh /home/mimosinnet/Dades/Backup/bkp_zotero"
@@ -81,6 +80,7 @@ alias -r MoveLastTemp="$Actius/MoveLast.zsh Baixades/Temp"
 alias -r PresCopyMedia="$Actius/PresCopyMedia.zsh"
 alias -r PresCrea="$Actius/PresCrea.zsh"
 alias -r PresRsyncServer="$Actius/PresRsyncServer.zsh"
+alias -r PresTmux="$Actius/Presentacions.zsh"
 # }}}
 
 # Alias Perl5 {{{
@@ -105,21 +105,6 @@ alias -r 6t='raku -I ../lib'
 alias -r Test='RAKUDOLIB=lib prove6'
 # }}}
 
-# Alias Repos {{{
-# Absolute path to be able to be run by root
-alias -r Actualitza="$Actius/Actualitza.zsh"
-alias -r Correu='RunRepo Correu'
-alias -r Kernel_Update="$Actius/KernelUpdate.zsh"
-alias -r Mails='RunRepo Mails'
-alias -r MountPortage="$Actius/MountPortage.zsh"
-alias -r MuttAliases='RunRepo MuttAliases'
-alias -r Rsync="$Actius/Rsync.zsh"
-# Per testejar com funcionen els parametres en les zfunc
-alias -r Test='RunRepo Test'
-alias -r Vimdiff="$Actius/Vimdiff.zsh"
-alias -r Vimdiff_Psicosocial='RunRepo Vimdiff_Server'
-# }}}
-
 # Alias Servidors {{{
 #alias -r windows="TERM='xterm' ssh mimosinnet@windows11w"
 alias -r fx="$Actius/Entra.zsh fx"
@@ -130,45 +115,47 @@ alias -r mimomedia="$Actius/Entra.zsh mimomedia10"
 alias -r mimomini12w="$Actius/Entra.zsh mimomini12w"
 alias -r mimory="$Actius/Entra.zsh mimory"
 alias -r mimoserver="$Actius/Entra.zsh mimoserver"
-alias -r mimouab="$Actius/Entra.zsh mimouab"
 alias -r nisomim12w="$Actius/Entra.zsh nisomim12w"
 alias -r phenom="$Actius/Entra.zsh phenom"
+alias -r uabmimo="$Actius/Entra.zsh uabmimo"
+alias -r uabfire="$Actius/Entra.zsh uabfire"
 # }}}
 
 # Alias Shell Commands {{{
+# alias -r DelSpace=' zmv '* *' '$f:gs/ /_' '
+# alias -r Print_Screen="$Actius/Print_Screen.zsh"
 # alias -r rtorrent='ssh rtorrent@mimoalf'
+# https://makandracards.com/jan0sch/9533-mass-renaming-files-with-zmv
 alias -r Borrem="$Actius/Borrem.zsh"
 alias -r Cating='cat /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r Colors="print 'PrintColors to print colors' &&  source /home/mimosinnet/.zfunc/PrintColors.zsh"
 alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
-alias -r Date="$Actius/Date.zsh"
 alias -r DF="$Actius/DF.zsh"
+alias -r Date="$Actius/Date.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
+alias -r Gdrive="$Actius/Rclone.zsh Gdrive"
+alias -r Mkdir="source $Actius/Mkdir.zsh"
+alias -r OneDrive="$Actius/Rclone.zsh OneDrive"
+alias -r Pdf_to_Png="$Actius/Pdf_to_Png.zsh"
+alias -r Print_Screen="$Actius/Print_Screen_Wayland.zsh"
+alias -r Sis="source $Actius/Sistema.zsh" 
+alias -r Teams_TFG="$Actius/Rclone.zsh Teams_TFG"
+alias -r VideoYoutubeBaixar="$Actius/VideoYoutubeBaixar.zsh"
+alias -r VideoYtbFromat="youtube-dl -o '%(upload_date)s_%(id)s_%(title)s.%(ext)s'"
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
 alias -r feh='feh --edit --auto-zoom --full-screen -d'
-alias -r ls='ls --color=auto'
 alias -r lisah='ls -lisah'
+alias -r ls='ls --color=auto'
 alias -r lsUsb='mount /mnt/usb && ls -lisah /mnt/usb && umount /mnt/usb'
 alias -r lsg='ls -lisah | grep'
 alias -r lsm='cat ~/.mutt/data/aliases | grep'
 alias -r ltr='ls -ltr'
 alias -r mv='mv -i'
-alias -r Mkdir="source $Actius/Mkdir.zsh"
 alias -r obre='xdg-open'
-alias -r OneDrive="$Actius/Rclone.zsh OneDrive"
-alias -r Gdrive="$Actius/Rclone.zsh Gdrive"
-alias -r Teams_TFG="$Actius/Rclone.zsh Teams_TFG"
 alias -r ping='ping -c 3'
-# alias -r Print_Screen="$Actius/Print_Screen.zsh"
-alias -r Print_Screen="$Actius/Print_Screen_Wayland.zsh"
 alias -r rl='readlink -f'
 alias -r tree='tree -AC'
-alias -r Sis="source $Actius/Sistema.zsh" 
 alias -r unzip="unzip -O utf8"
-alias -r VideoYtbFromat="youtube-dl -o '%(upload_date)s_%(id)s_%(title)s.%(ext)s'"
-alias -r VideoYoutubeBaixar="$Actius/VideoYoutubeBaixar.zsh"
-# https://makandracards.com/jan0sch/9533-mass-renaming-files-with-zmv
-# alias -r DelSpace=' zmv '* *' '$f:gs/ /_' '
 # }}}
 
 # Alias Sheel Commands Only Root {{{
@@ -177,16 +164,18 @@ alias -r Iotop='sysctl kernel.task_delayacct=1 && iotop; sysctl kernel.task_dela
 
 # Alias Wake {{{
 alias -r PowerOffFx="$Actius/Wake.zsh poweroff fx none"
+alias -r PowerOffMimoFire="$Actius/Wake.zsh poweroff mimofire none"
 alias -r PowerOffMimoMedia="$Actius/Wake.zsh poweroff mimomedia10 none"
 alias -r PowerOffMimoServer="$Actius/Wake.zsh poweroff mimoserver /etc/portage"
 alias -r PowerOffMimory="$Actius/Wake.zsh poweroff mimory /home/mimosinnet/Dades/Documents"
 alias -r PowerOffNisomim="$Actius/Wake.zsh poweroff nisomim none"
 alias -r PowerOffPhenom="$Actius/Wake.zsh poweroff phenom none"
-alias -r WakeMimoMedia="$Actius/Wake.zsh wake mimomedia10"
 alias -r WakeFx="$Actius/Wake.zsh wake fx" 
+alias -r WakeMimoMedia="$Actius/Wake.zsh wake mimomedia10"
 alias -r WakeMimoServer="$Actius/Wake.zsh wake mimoserver"
-alias -r WakePhenom="$Actius/Wake.zsh wake phenom"
 alias -r WakeMimory="$Actius/Wake.zsh wake mimory /home/mimosinnet/Dades/Documents"
+alias -r WakePhenom="$Actius/Wake.zsh wake phenom"
+alias -r WakeMimoFire="$Actius/Wake.zsh wake mimofire"
 # }}}
 
 # Alias Zsh Functions {{{
