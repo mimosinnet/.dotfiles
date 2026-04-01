@@ -14,8 +14,8 @@ alias -r Vimdiff="$Actius/Vimdiff.zsh"
 alias -r git='LC_ALL=en_US.UTF-8 git'
 alias -r Gxmessage='gxmessage -bg black -fg lightgreen -center -timeout 8 -title Ajuda -borderless -file'
 alias -r Lichess='/usr/local/bin/LDA/Lichess'
-# alias -r LO='/usr/bin/libreoffice-bin'
-alias -r LO='flatpak run org.libreoffice.LibreOffice'
+alias -r LO='/usr/bin/libreoffice-bin'
+# alias -r LO='flatpak run org.libreoffice.LibreOffice'
 alias -r lynx-proxy='export http_proxy=http://127.0.0.1:8118 && lynx http://config.privoxy.org/'
 # https://superuser.com/questions/232457/zsh-output-whole-history
 alias fzf="fzf --preview-window top:30 --preview '([[ -f {} ]] && (bat --style=numbers --color=always\
@@ -38,6 +38,13 @@ alias -r BackupPresentacions="$Actius/Segur.zsh \
 # Alias disk space {{{
 alias -r DG='du -hd 1 | grep G'
 alias -r DM='du -hd 1 | grep M'
+# }}}
+
+# Drive {{{
+alias -r Gdrive="$Actius/Rclone.zsh Gdrive"
+alias -r OneDrive="$Actius/Rclone.zsh OneDrive"
+alias -r Repromob="$Actius/Rclone.zsh Repromob"
+alias -r Teams_TFG="$Actius/Rclone.zsh Teams_TFG"
 # }}}
 
 # Alias emerge {{{
@@ -126,6 +133,7 @@ alias -r uabfire="$Actius/Entra.zsh uabfire"
 # alias -r Print_Screen="$Actius/Print_Screen.zsh"
 # alias -r rtorrent='ssh rtorrent@mimoalf'
 # https://makandracards.com/jan0sch/9533-mass-renaming-files-with-zmv
+alias -r Alarma="$Actius/Alarma.zsh"
 alias -r Borrem="$Actius/Borrem.zsh"
 alias -r Cating='cat /home/mimosinnet/Dades/Documents/Personal/Finances/ING_ibex35.txt'
 alias -r Colors="print 'PrintColors to print colors' &&  source /home/mimosinnet/.zfunc/PrintColors.zsh"
@@ -133,13 +141,12 @@ alias -r Convert="convmv -f ISO-8859-1 -t UTF-8"
 alias -r DF="$Actius/DF.zsh"
 alias -r Date="$Actius/Date.zsh"
 alias -r Dir='ls -d *(/)' # Llista directoris
-alias -r Gdrive="$Actius/Rclone.zsh Gdrive"
+alias -r Duplicats="source $Actius/Duplicats.zsh"
+alias -r Gif_2_mp4="$Actius/Gif_2_mp4.zsh"
 alias -r Mkdir="source $Actius/Mkdir.zsh"
-alias -r OneDrive="$Actius/Rclone.zsh OneDrive"
 alias -r Pdf_to_Png="$Actius/Pdf_to_Png.zsh"
 alias -r Print_Screen="$Actius/Print_Screen_Wayland.zsh"
 alias -r Sis="source $Actius/Sistema.zsh" 
-alias -r Teams_TFG="$Actius/Rclone.zsh Teams_TFG"
 alias -r VideoYoutubeBaixar="$Actius/VideoYoutubeBaixar.zsh"
 alias -r VideoYtbFromat="youtube-dl -o '%(upload_date)s_%(id)s_%(title)s.%(ext)s'"
 alias -r bc='bc /home/mimosinnet/Dades/Scripts/bc/*.bc'
@@ -176,6 +183,12 @@ alias -r WakeMimoServer="$Actius/Wake.zsh wake mimoserver"
 alias -r WakeMimory="$Actius/Wake.zsh wake mimory /home/mimosinnet/Dades/Documents"
 alias -r WakePhenom="$Actius/Wake.zsh wake phenom"
 alias -r WakeMimoFire="$Actius/Wake.zsh wake mimofire"
+# }}}
+
+# Alias xdg-mime {{{
+alias Xfile='xdg-mime query filetype'
+alias Xtype='xdg-mime query default'
+alias Xset='xdg-mime default'
 # }}}
 
 # Alias Zsh Functions {{{
