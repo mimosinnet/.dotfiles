@@ -24,6 +24,8 @@ setopt extended_history hist_ignore_all_dups  hist_ignore_space hist_reduce_blan
 setopt autocd
 # regex en operacions amb arxius: cp ^*.(tar|bz2|gz).
 setopt extendedglob
+# PCRE regular expression
+setopt re_match_pcre
 # corregeix instruccions
 setopt correctall
 # Fem servir aquesta funció per a que funcioni el prompt, veure .zfunc/prompt
