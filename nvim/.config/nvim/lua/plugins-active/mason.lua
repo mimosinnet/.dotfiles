@@ -1,5 +1,5 @@
 return {
-	"williamboman/mason.nvim",
+  "williamboman/mason.nvim",
 	cmd = "Mason",
 	event = "BufReadPre",
 	opts = {

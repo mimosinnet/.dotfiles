@@ -76,7 +76,7 @@ end
 
 -- Dow PD {{{
 function M.down()
-	local before = '<div style="position: absolute; bottom: 0.1em;"><p style="background-color: black; font-size: 75%">'
+	local before = '<div style="position: absolute; bottom: 0.1em;"><p style="background-color: black; color: white; font-size: 75%;">'
 	local after = "</p></div>"
 	parameters.before_after_line(before, after)
 	-- https://www.youtube.com/watch?v=AAx2pDCokj8

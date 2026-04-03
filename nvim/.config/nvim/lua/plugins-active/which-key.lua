@@ -1,6 +1,11 @@
-# https://github.com/folke/which-key.nvim
+-- https://github.com/folke/which-key.nvim
+
 return {
 	"folke/which-key.nvim",
+  dependencies = {
+    "nvim-mini/mini.icons",
+    'nvim-tree/nvim-web-devicons'
+  },
 	event = "VeryLazy",
 	priority = 990,
 	init = function()
