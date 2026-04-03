@@ -140,9 +140,9 @@ exec sleep 2m && $term -T nvim -e nvim
 exec sleep 3m && gvim
 exec sleep 4m && qpwgraph
 exec sleep 5m && /usr/bin/signal-desktop
+exec sleep 9m && discord
 # }}}
 
-# exec sleep 6m && discord
 # exec sleep 4m && google-chrome-stable --new-window "https://teams.microsoft.com/_#/calendarv2"
 # exec sleep 150 && vivaldi --proxy-server="localhost:8118" "https://www.investing.com"
 # exec sleep 7m && google-chrome-stable --new-window "https://www.google.com/finance/"
@@ -180,7 +180,10 @@ input * {
   xkb_model 	"pc104"
 }
 
-input "2362:9488:PixArt_USB_Optical_Mouse"  {
+
+# input "2362:9488:PixArt_USB_Optical_Mouse"  {
+
+input "type:pointer"  {
   left_handed enabled
 }
 
@@ -425,7 +428,6 @@ for_window [title = "About Mozilla Firefox"] floating enable
 for_window [window_role = "About"] floating enable
 
 # for_window [workspace=$W11] floating enable
-
 # }}}
 
 # The floating modifier {{{
@@ -449,6 +451,13 @@ bindsym $mod1+Shift+minus move scratchpad
 bindsym $mod1+minus scratchpad show
 
 # }}}
+
+# Sticky Windows {{{
+# Show in all windos in the same output
+for_window [title = "Alarma"] sticky enable
+
+# }}}
+
 
 # 1}}}
 
@@ -493,8 +502,10 @@ assign [app_id="org.telegram.desktop"]        $W8
 assign [app_id="vivaldi-stable"]              $W9
 assign [app_id="org.pulseaudio.pavucontrol"]  $W11
 assign [title="^nvim$"]                       $W11
-assign [class="^Gvim$"]                       $W11
+assign [app_id="^gvim"]                       $W11
 assign [app_id="signal"]                      $W11
+assign [app_id="discord"]                     $W11
+
 # }}}
 
 # Status bar  {{{2
@@ -763,8 +774,8 @@ mode "People" {
 mode "Office" {
 	bindsym h exec Gxmessage.zsh ~/.config/sway/help_files/9_help_Office.txt
     # bindsym l exec /usr/local/bin/LibreOffice-fresh.full-x86_64.AppImage
-	bindsym l exec flatpak run org.libreoffice.LibreOffice
-    # bindsym l exec libreoffice-bin
+	# bindsym l exec flatpak run org.libreoffice.LibreOffice
+    bindsym l exec libreoffice-bin
     bindsym p exec mupdf
     bindsym q exec qpdfview
     bindsym t exec texmaker
